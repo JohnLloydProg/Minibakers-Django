@@ -21,5 +21,5 @@ class OrderItemAdmin(admin.ModelAdmin):
     list_display = ('id', 'product__name', 'order__user__username', 'quantity')
     search_fields = ('product__name', 'order__user__username')
     list_filter = ('product__name',)
-    readonly_fields = ('id')
+    readonly_fields = ('id',)
 
