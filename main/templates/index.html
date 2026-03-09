@@ -23,7 +23,7 @@
 	<nav class="fixed-top navbar-expand-lg">
 		<ul class="navbarlist">
 		
-		  <li class="leftfloat logo"> <a class="menus" href="index.html"><img src="logo.png" width="65px"></a></li>
+		  <li class="leftfloat logo"> <a class="menus" href="index.html"><img src="{% static 'images/logo.png' %}" width="65px"></a></li>
 		  <li class="leftfloat">  <a class="menus" href="index.html" style="font-size: 40px;" >Mini Bakers</a></li>
 		  <li class="rightfloat"> <a class="menus pd" href="contact.html">Contact Us</a></li>
 		  <li class="rightfloat"> <a class="menus pd" href="testimonials.html">Testimonials</a></li>
@@ -55,7 +55,7 @@
 				</div>
 				
 				<div class="col">
-					<img src="bannerp.png" width="100%">
+					<img src="{% static 'images/bannerp.png' %}" width="100%">
 				</div>
 			</div>
 		</div>
@@ -73,16 +73,16 @@
 				</div>
 				
 				<div class="col" style="padding-bottom:100px;">
-				<img src="gek.png" width="600px" height="600px" style="border: 10px; border-style:solid; border-color:#faf9e7;"> 
+				<img src="{% static 'images/gek.png' %}" width="600px" height="600px" style="border: 10px; border-style:solid; border-color:#faf9e7;"> 
 				</div>
 			</div>
 		</div>
 		</div>
 		
-		<div style="height:100vh;  background-image: url(bgfixed.png); background-size:cover; background-attachment:fixed; background-repeat: no-repeat;">
+		<div style="height:100vh;  background-image: url(static/images/bgfixed.png); background-size:cover; background-attachment:fixed; background-repeat: no-repeat;">
 		</div>
 		
-		<div style="height: auto; background-image: url(bg.png); padding-bottom:150px; ">
+		<div style="height: auto; background-image: url(static/images/bg.png); padding-bottom:150px; ">
 			<div class="container" style="padding-top:100px;">
 				<div class="text-center" style="padding:60px;">
 				<h1 class="scriptfont" style="color:#faf9e7;">Choose from different baked goodies!<h1/>
@@ -91,25 +91,25 @@
 					<div class="row">
 						<div class="col">
 							<div class="img-box">
-								<a href="products.html#cakes"> <img src="cakescateg.png" alt="cakes"> </a>
+								<a href="products.html#cakes"> <img src="{% static 'images/cakescateg.png' %}" alt="cakes"> </a>
 							</div>
 						</div>
 
 						<div class="col">
 							<div class="img-box">
-								<a href="products.html#bread"> <img src="breadcateg.png" alt="bread"> </a>
+								<a href="products.html#bread"> <img src="{% static 'images/breadcateg.png' %}"  alt="bread"> </a>
 							</div>
 						</div>
 
 						<div class="col">
 							<div class="img-box">
-								<a href="products.html#pastries"> <img src="pastriescateg.png" alt="pastries"> </a>
+								<a href="products.html#pastries"> <img src="{% static 'images/pastriescateg.png' %}"  alt="pastries"> </a>
 							</div>
 						</div>
 						
 						<div class="col">
 							<div class="img-box">
-								<a href="products.html#filipinodelicacies"> <img src="filipinodelicaciescateg.png" alt="filipino delicacies"> </a>
+								<a href="products.html#filipinodelicacies"> <img src="{% static 'images/filipinodelicaciescateg.png' %}"  alt="filipino delicacies"> </a>
 							</div>
 						</div>
 					</div>
@@ -165,7 +165,7 @@
 															<div class="carousel-item" style="padding-left:200px;">
 																<div class="card">
 																	<div class="img-wrapper"> <div class="slider-item col items"> <a href="25.html">
-																			<img src="Products/Filipino Delicacies/Cheesy Ensaymada/Cheesy Ensaymada1.jpg" alt="Product Image" style="padding-top:20px;" width="570px" height="570px" class="product-image">
+																			<img src="{% static 'images/products/FilipinoDelicacies/Cheesy Ensaymada/Cheesy Ensaymada1.jpg' %}" alt="Product Image" style="padding-top:20px;" width="570px" height="570px" class="product-image">
 																	
 																   </a> </div> </div>
 																	<div class="card-body mt-5"> <br/> <br/>
@@ -222,7 +222,7 @@
 					<div class="row">
 						<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
 							<h2 class="footer-heading"><a href="#" class="logo" style="font-family: Pacifico;">Mini bakers</a></h2>
-							<img src="logo.png" width="60px"> <br/><br/>
+							<img src="{% static 'images/logo.png' %}" width="60px"> <br/><br/>
 							<p>More than just a bakery; we aspire to be a cherished part of our community's fabric, intertwining tradition, innovation, and heartfelt connections.</p>
 						</div>
 						
