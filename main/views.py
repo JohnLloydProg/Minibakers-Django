@@ -5,16 +5,16 @@ from products.models import Product, ProductType
 
 class indexView(View):
     def get(self, request):
-        return render(request, template_name='index.html')
+        return render(request, 'index.html')
 
 
 class aboutView(View):
     def get(self, request):
-        return render(request)
+        return render(request, 'about.html')
 
 class contactView(View):
     def get(self, request):
-        return render(request)
+        return render(request, 'contact.html')
 
 
 class ProductView(View):
@@ -31,3 +31,7 @@ class ProductView(View):
         print(products)
         return render(request, 'products.html', {'products':products, 'categories':product_types})
     
+
+class TestimonialsView(View):
+    def get(self, request):
+        return render(request, 'testimonials.html')
