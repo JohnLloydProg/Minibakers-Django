@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'products', 'transactions'
 ]
 
 MIDDLEWARE = [
@@ -72,11 +74,18 @@ WSGI_APPLICATION = 'minibakers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+DATABASE_URL = 'postgresql://postgres.mzzudbpkkibhorihbsti:Minibakers12345@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres'
+
+if (not DATABASE_URL):
+    default = {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+else:
+    default = dj_database_url.config(default=DATABASE_URL, conn_max_age=600, ssl_require=True)
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': default
 }
 
 
