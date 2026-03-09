@@ -1,8 +1,9 @@
+{% load static %}
 <nav class="fixed-top navbar-expand-lg">
     <ul class="navbarlist">
     
-        <li class="leftfloat logo"> <a class="menus" href="index.html"><img src="logo.png" width="65px"></a></li>
-        <li class="leftfloat">  <a class="menus" href="index.html" style="font-size: 40px;" >Mini Bakers</a></li>
+        <li class="leftfloat logo"> <a class="menus" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" width="65px"></a></li>
+        <li class="leftfloat">  <a class="menus" href="{% url 'home' %}" style="font-size: 40px;" >Mini Bakers</a></li>
         <li class="rightfloat"> <a class="menus pd" href="contact.html">Contact Us</a></li>
         <li class="rightfloat"> <a class="menus pd" href="testimonials.html">Testimonials</a></li>
         <li class="rightfloat nav-item dropdown">
