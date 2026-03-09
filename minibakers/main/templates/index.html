@@ -1,0 +1,317 @@
+{% load static %}
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+
+		<title>Home</title>
+		
+
+		<link link rel="stylesheet" href="{% static 'main/css/cssfile.css' %}" type="text/css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		
+
+	
+		
+	</head>
+
+<body>
+<div class="maincontent"> 
+	<nav class="fixed-top navbar-expand-lg">
+		<ul class="navbarlist">
+		
+		  <li class="leftfloat logo"> <a class="menus" href="index.html"><img src="logo.png" width="65px"></a></li>
+		  <li class="leftfloat">  <a class="menus" href="index.html" style="font-size: 40px;" >Mini Bakers</a></li>
+		  <li class="rightfloat"> <a class="menus pd" href="contact.html">Contact Us</a></li>
+		  <li class="rightfloat"> <a class="menus pd" href="testimonials.html">Testimonials</a></li>
+		  <li class="rightfloat nav-item dropdown">
+			<a class="pd menus nav-link dropdown-toggle" href="products.html" onclick="redirectToProducts()" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  Products
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			  <a class="dropdown-item" href="products.html#cakes">Cakes</a>
+			  <a class="dropdown-item" href="products.html#bread">Bread</a>
+			  <a class="dropdown-item" href="products.html#pastries">Pastries</a>
+			  <a class="dropdown-item" href="products.html#filipinodelicacies">Delicacies</a>
+		  </li>
+		  <li class="rightfloat"> <a class="menus pd" href="about.html">About Us</a></li>
+		  <li><a class="rightfloat menus pd active" href="index.html">Home</a></li>
+		</ul>
+	</nav>
+
+<!-->	Dito nyo lagay content	-->
+	<div style="background-color:#faf9e7; height:100vh;">
+		<div class="container">
+
+			<div class="row" style="padding-top:150px; padding-bottom:100px;">
+				<div class="col">
+					<h1 style="margin:auto; padding-top:200px; font-family:Pacifico;"> Welcome to Mini Bakers!
+					</h1>
+					<p class="contentfont"> Welcome to Mini Bakers, a delightful haven born out of a mother's passion for baking. Our story is one of love, dedication, and the sweet aroma of success that wafts from our ovens to your homes.
+					</p>
+				</div>
+				
+				<div class="col">
+					<img src="bannerp.png" width="100%">
+				</div>
+			</div>
+		</div>
+		
+		<div style="  background-color:#983236; ">		
+		<div class="container">
+			<div class="row" style="padding-top:100px; ;">
+				<div class="col text-center" style="color:#faf9e7;"> <br/> <br/> <br/>
+					<h1 class="scriptfont"> From hobby to business</h1> <br/><br/> 
+					<p class="contentfont" style="font-size:20px;"> What started as a simple hobby, baking treats for family and friends, soon blossomed into a full-fledged business. Every recipe, every creation is infused with the warmth and care that only a mother can provide.
+					</p>
+						<div class="button-effect"> <br/>
+						<a class="effect effect-5" href="about.html" title="Know more">Know more</a>
+						</div>
+				</div>
+				
+				<div class="col" style="padding-bottom:100px;">
+				<img src="gek.png" width="600px" height="600px" style="border: 10px; border-style:solid; border-color:#faf9e7;"> 
+				</div>
+			</div>
+		</div>
+		</div>
+		
+		<div style="height:100vh;  background-image: url(bgfixed.png); background-size:cover; background-attachment:fixed; background-repeat: no-repeat;">
+		</div>
+		
+		<div style="height: auto; background-image: url(bg.png); padding-bottom:150px; ">
+			<div class="container" style="padding-top:100px;">
+				<div class="text-center" style="padding:60px;">
+				<h1 class="scriptfont" style="color:#faf9e7;">Choose from different baked goodies!<h1/>
+				</div>
+				
+					<div class="row">
+						<div class="col">
+							<div class="img-box">
+								<a href="products.html#cakes"> <img src="cakescateg.png" alt="cakes"> </a>
+							</div>
+						</div>
+
+						<div class="col">
+							<div class="img-box">
+								<a href="products.html#bread"> <img src="breadcateg.png" alt="bread"> </a>
+							</div>
+						</div>
+
+						<div class="col">
+							<div class="img-box">
+								<a href="products.html#pastries"> <img src="pastriescateg.png" alt="pastries"> </a>
+							</div>
+						</div>
+						
+						<div class="col">
+							<div class="img-box">
+								<a href="products.html#filipinodelicacies"> <img src="filipinodelicaciescateg.png" alt="filipino delicacies"> </a>
+							</div>
+						</div>
+					</div>
+			</div>
+
+		</div>
+
+
+		<div style=" background-color:#faf9e7;">
+					<div class="container" style="padding-top:50px;">
+					<h1 class="scriptfont text-center" style="color:black;">Featured Products</h1>
+					
+												<hr/>
+												<br/>
+												<br/>
+												<br/>
+												<div class="row" style="padding-left:100px;">
+													<div id="carousel1" class="carousel">
+														<div class="carousel-inner">
+															<div class="carousel-item active" style="padding-left:200px;">
+																<div class="card" >
+																	<div class="img-wrapper">	
+																		<div class="slider-item items col" > <a href="15.html">
+																		<img src="products/10/10.jpg" alt="Product Image" style="padding-top:20px;" width="100" height="100" class="product-image">
+																		
+																		</a></div>   
+																	</div>
+																	<div class="card-body mt-5"> <br/> <br/>
+																		<h5 class="card-title">Brioche Loaf</h5>
+																		<p class="card-text">Dive into the buttery bliss of our freshly baked brioche loaf at Mini Bakers, where each golden-brown slice is a testament to the perfect blend of craftsmanship and flavor that defines our artisanal approach to baking</p>
+																			
+																		<center> <a href="15.html"  class="btn btn-rust" style="background-color:#983236; color:white;">View More</a> </center>
+																	</div>
+																</div>
+															</div>
+															
+															
+															<div class="carousel-item" style="padding-left:200px;">
+																<div class="card">
+																	<div class="img-wrapper">	<div class="slider-item items col" > <a href="6.html">
+																		<img src="products/30/30.jpg" alt="Product Image" style="padding-top:20px;" width="570px" height="570px" class="product-image">
+																		
+																	</a></div>  </div>
+																	<div class="card-body mt-5"> <br/> <br/>
+																		<h5 class="card-title">Delight in the irresistible combination </h5> of moist cake layers and decadent cookie crumbles with our signature Cookie Crumble Cake at Mini Bakers, where every bite is a symphony of textures and flavors that will elevate your dessert experience to new heights</p>
+																			
+																		<center> <a href="6.html"  class="btn btn-rust" style="background-color:#983236; color:white;">View More</a> </center>
+																	</div>
+																</div>
+															</div>
+															
+															
+															<div class="carousel-item" style="padding-left:200px;">
+																<div class="card">
+																	<div class="img-wrapper"> <div class="slider-item col items"> <a href="25.html">
+																			<img src="Products/Filipino Delicacies/Cheesy Ensaymada/Cheesy Ensaymada1.jpg" alt="Product Image" style="padding-top:20px;" width="570px" height="570px" class="product-image">
+																	
+																   </a> </div> </div>
+																	<div class="card-body mt-5"> <br/> <br/>
+																		<h5 class="card-title">Cheesy Ensaymada</h5>
+																		<p class="card-text">Indulge in the rich, cheesy goodness of our traditional Cheesy Ensaymada at Mini Bakers, where each soft and buttery pastry is meticulously crafted to bring you a taste of Filipino comfort and culinary heritage in every delightful bite..</p>
+																			
+																		<center> <a href="25.html"  class="btn btn-rust" style="background-color:#983236; color:white;">View More</a> </center>
+																	</div>
+																</div>
+															</div>
+															
+															
+															<div class="carousel-item" style="padding-left:200px;">
+																<div class="card">
+																	<div class="img-wrapper"><div class="slider-item col items"><a href="31.html">
+																			<img src="products/11/11.jpg" alt="Product Image" style="padding-top:20px;" width="570px" height="570px" class="product-image">
+																		
+																	</a></div> </div>
+																	<div class="card-body mt-5"> <br/> <br/>  
+																	<h5 class="card-title">Chocolate Cupcakes</h5>
+																		<p class="card-text">Treat yourself to the divine pleasure of our Chocolate Cupcakes at Mini Bakers, where every bite unveils a perfect harmony of moist, decadent cake and velvety chocolate frosting, ensuring an indulgent experience that captures the essence of pure chocolate bliss.</p>
+																			
+																		<center> <a href="31.html"  class="btn btn-rust" style="background-color:#983236; color:white;">View More</a> </center>
+																	</div>
+																</div>
+															</div>
+															
+															
+												
+																				   
+														 
+														  
+														</div>
+														<button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+															<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+															<span class="visually-hidden">Previous</span>
+														</button>
+														<button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+															<span class="carousel-control-next-icon" aria-hidden="true"></span>
+															<span class="visually-hidden">Next</span>
+														</button>
+													</div>
+												</div>
+					
+					
+					
+		
+					</div> <br/><br/><br/>
+		</div>
+
+	<footer class="footer-04" style="font-family: Tw Cen MT; ">
+		<div style="background-color:#983236; height:50vh; overflow:hidden;" >
+			<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
+							<h2 class="footer-heading"><a href="#" class="logo" style="font-family: Pacifico;">Mini bakers</a></h2>
+							<img src="logo.png" width="60px"> <br/><br/>
+							<p>More than just a bakery; we aspire to be a cherished part of our community's fabric, intertwining tradition, innovation, and heartfelt connections.</p>
+						</div>
+						
+						<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
+							<h2 class="footer-heading">Categories</h2>
+								<ul class="list-unstyled">
+								  <li><a href="products.html#cakes" class="py-1 d-block">Cakes</a></li>
+								  <li><a href="products.html#bread" class="py-1 d-block">Bread</a></li>
+								  <li><a href="products.html#pastries" class="py-1 d-block">Pastries</a></li>
+								  <li><a href="products.html#filipinodelicacies" class="py-1 d-block">Filipino Delicacies</a></li>
+								</ul>
+						</div>
+						
+						<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
+							<h2 class="footer-heading">Tag cloud</h2>
+							<div class="tagcloud">
+							<a href="#" class="tag-cloud-link">cakes</a>
+							<a href="#" class="tag-cloud-link">chocolate</a>
+							<a href="#" class="tag-cloud-link">cupcake</a>
+							<a href="#" class="tag-cloud-link">filipino delicacies</a>
+							<a href="#" class="tag-cloud-link">custom</a>
+							<a href="#" class="tag-cloud-link">chiffon</a>
+							<a href="#" class="tag-cloud-link">crinkles</a>
+							<a href="#" class="tag-cloud-link">dessert</a>
+							</div>
+						</div>
+						
+						<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
+							<h2 class="footer-heading">Subscribe</h2>
+							<form action="#" class="subscribe-form">
+						    <div class="form-group d-flex">
+								<input type="text" class="form-control rounded-left" placeholder="Enter email address">
+								<button type="submit" class="form-control submit rounded-right"><span class="sr-only">Submit</span><i class="ion-ios-send"></i></button>
+							</div>
+							</form>
+						</div>
+					</div>
+			</div>
+			<div class="w-100 mt-5 border-top py-5"> </div>
+		</div>
+	</footer>
+</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+  $(document).ready(function () {
+    const multipleCardCarousel = document.querySelector("#carousel1");
+    if (window.matchMedia("(min-width: 768px)").matches) {
+      var carousel = new bootstrap.Carousel(multipleCardCarousel, {
+        interval: false,
+      });
+      var carouselWidth = $(".carousel-inner")[0].scrollWidth;
+      var cardWidth = $(".carousel-item").width();
+      var scrollPosition = 0;
+      $("#carousel1 .carousel-control-next").on("click", function () {
+        if (scrollPosition < carouselWidth - cardWidth * 4) {
+          scrollPosition += cardWidth;
+          $("#carousel1 .carousel-inner").animate(
+            { scrollLeft: scrollPosition },
+            600
+          );
+        }
+      });
+      $("#carousel1 .carousel-control-prev").on("click", function () {
+        if (scrollPosition > 0) {
+          scrollPosition -= cardWidth;
+          $("#carousel1 .carousel-inner").animate(
+            { scrollLeft: scrollPosition },
+            600
+          );
+        }
+      });
+    } else {
+      $(multipleCardCarousel).addClass("slide");
+    }
+  });
+</script>
+
+<script>
+    function redirectToProducts() {
+      window.location.href = "products.html";
+    }
+	</script>
+
+
+
+</body>
+</html>
