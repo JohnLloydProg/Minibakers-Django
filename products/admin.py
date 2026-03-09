@@ -1,5 +1,12 @@
 from django.contrib import admin
-from .models import Product, CartItem, Review
+from .models import Product, CartItem, Review, ProductType
+
+
+@admin.register(ProductType)
+class ProductTypeAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+    search_fields = ('name',)
+    readonly_fields = ('id',)
 
 
 @admin.register(Product)

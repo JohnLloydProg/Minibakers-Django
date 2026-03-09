@@ -1,0 +1,415 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <title>Products</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="{% static 'css/cssfile.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+
+<body>
+<div class="maincontent"> 
+	<nav class="fixed-top navbar-expand-lg">
+		<ul class="navbarlist">
+		
+		  <li class="leftfloat logo"> <a class="menus" href="index.html"><img src="logo.png" width="65px"></a></li>
+		  <li class="leftfloat">  <a class="menus" href="index.html" style="font-size: 40px;" >Mini Bakers</a></li>
+		  <li class="rightfloat"> <a class="menus pd" href="contact.html">Contact Us</a></li>
+		  <li class="rightfloat"> <a class="menus pd" href="testimonials.html">Testimonials</a></li>
+		  <li class="rightfloat nav-item dropdown">
+			<a class="pd menus active nav-link dropdown-toggle" onclick="redirectToProducts()" role="button" href="products.html" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  Products
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			  <a class="dropdown-item" href="products.html#cakes">Cakes</a>
+			  <a class="dropdown-item" href="products.html#bread">Bread</a>
+			  <a class="dropdown-item" href="products.html#pastries">Pastries</a>
+			  <a class="dropdown-item" href="products.html#filipinodelicacies">Delicacies</a>
+		  </li>
+		  <li class="rightfloat"> <a class="menus pd" href="about.html">About Us</a></li>
+		  <li><a class="rightfloat menus pd" href="index.html">Home</a></li>
+		</ul>
+	</nav>
+
+<!-->	Dito nyo lagay content	-->
+<br>
+<br>
+<br>
+<br>
+<div class="mt-5 badi">
+<div class="container">
+<h1 align="center" style="font-family: Pacifico;"> <b> Products </b> </h1>
+		<br/><br/> 
+                    <h1 style="font-family: Pacifico;" id="cakes"> <b> Cakes </b> </h1>
+                    <hr/>
+                    <br/>
+                    <div class="row">
+                            <div class="product-item items col" > <a href="1.html">
+                                <img src="products/35/35.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal4">
+                                <div class="product-details text-center">
+                                    <h5>Mocha Cake</h5>
+                                    ₱900.00
+                                </div>
+                            </a></div>    
+                            
+                            <div class="product-item items col" > <a href="2.html">
+                                <img src="products/26/26.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal5">
+                                <div class="product-details text-center">
+                                    <h5>Chiffon Cake</h5>
+                                    ₱500.00
+            
+                                </div>
+                            </a></div>  
+                            
+                            <div class="product-item col items"> <a href="3.html">
+                                <img src="products/27/27.jpg" alt="Product Image" class="product-image"  data-toggle="modal" data-target="#modal6">
+                                        
+                                <div class="product-details text-center">
+                                    <h5>Cake with Mango</h5>
+                                     ₱1200.00
+                                </div>
+                           </a> </div>
+                                        
+                            <div class="product-item col items"><a href="4.html">
+                                <img src="products/28/28.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal7">
+                                <div class="product-details text-center">
+                                    <h5>Choco Marble Cake</h5>
+                                    ₱1050.00
+                                </div>
+                            </a></div>
+                            
+                            <div class="product-item items col"><a href="5.html">
+                                <img src="products/29/29.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal8">
+                                <div class="product-details text-center">
+                                    <h5>Choco Marshmallow Cake</h5>
+                                    ₱1150.00
+                                </div>
+                            </a></div>
+                            <div class="product-item items col"><a href="6.html">
+                                <img src="products/30/30.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal8">
+                                <div class="product-details text-center">
+                                    <h5>Cookie Crumble Cake</h5>
+                                    ₱1400.00
+                                </div>
+                            </a></div>
+                            </div>
+                            <div class="row">
+                                    <div class="product-item items col" > <a href="7.html">
+                                        <img src="products/31/31.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal4">
+                                        <div class="product-details text-center">
+                                            <h5>Customizable Kids Cake</h5>
+                                            ₱1500.00
+                                        </div>
+                                    </a></div>       
+                                    <div class="product-item items col" > <a href="8.html">
+                                        <img src="products/32/32.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal4">
+                                        <div class="product-details text-center">
+                                            <h5>Fudge Cake</h5>
+                                            ₱1300.00
+                                        </div>
+                                    </a></div>    
+                                    <div class="product-item items col" > <a href="9.html">
+                                        <img src="products/33/33.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal4">
+                                        <div class="product-details text-center">
+                                            <h5>Lemon Meringue Cake</h5>
+                                            ₱1500.00
+                                        </div>
+                                    </a></div>    
+                            
+                                    <div class="product-item items col" > <a href="10.html">
+                                        <img src="products/34/34.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal4">
+                                        <div class="product-details text-center">
+                                            <h5>Mango Graham Cake</h5>
+                                            ₱700.00
+                                        </div>
+                                    </a></div>
+                                </div>           
+		
+		<br/><br/>					
+		<h1 style="font-family: Pacifico;" id="bread"> <b> Bread </b> </h1>
+		<hr/>
+		<br/>
+		<div class="row">
+            
+
+				<div class="product-item items col" > <a href="11.html">
+                    <img src="products/6/6.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal4">
+                    <div class="product-details text-center">
+                        <h5> Pandesal </h5>
+                         ₱5.00 
+                    </div>
+                </a></div>    
+				
+				<div class="product-item items col" > <a href="12.html">
+                    <img src="products/7/7.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal5">
+                    <div class="product-details text-center">
+                        <h5>Cheesy Garlic Bread</h5>
+                          ₱75.00
+                    </div>
+                </a></div>  
+				
+                <div class="product-item col items"> <a href="13.html">
+                    <img src="products/8/8.jpg" alt="Product Image" class="product-image"  data-toggle="modal" data-target="#modal6">
+							
+                    <div class="product-details text-center">
+                        <h5>Banana Cake</h5>
+                         ₱200.00
+                    </div>
+               </a> </div>
+							
+				<div class="product-item col items"><a href="14.html">
+                    <img src="products/9/9.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal7">
+                    <div class="product-details text-center">
+                        <h5>Raisin Bread</h5>
+                        ₱100.00
+                    </div>
+                </a></div>
+				
+				<div class="product-item items col"><a href="15.html">
+                    <img src="products/10/10.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal8">
+                    <div class="product-details text-center">
+                        <h5>Brioche Loaf Bread</h5>
+                        ₱150.00
+                    </div>
+                </a></div>
+
+		</div>
+
+        <div class="row">
+            
+            <div class="product-item items col" > <a href="16.html">
+                <img src="products/22/22.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal4">
+                <div class="product-details text-center">
+                    <h5> Kababayan </h5>
+                   ₱7.00 
+                </div>
+            </a></div> 
+
+            <div class="product-item items col" > <a href="17.html">
+                <img src="products/23/23.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal4">
+                <div class="product-details text-center">
+                    <h5> Glazed Cinnamon Rolls </h5>
+                     ₱25.00 
+                </div>
+            </a></div> 
+            <div class="product-item items col" > <a href="18.html">
+                <img src="products/24/24.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal4">
+                <div class="product-details text-center">
+                    <h5> Knotted Cinnamon Bread </h5>
+                     ₱30.00 
+                </div>
+            </a></div> 
+            </div>
+		
+		
+		<br/><br/>
+        <br/><br/>					
+        <h1 id="filipinodelicacies" style="font-family: Pacifico;"> <b> Filipino Delicacies </b> </h1>
+		<hr/>
+		<br/>
+		<div class="row">
+				 <div class="product-item col items"> <a href="19.html">
+                    <img src="products/1/1.jpg" alt="Product Image" class="product-image">
+							
+                    <div class="product-details text-center">
+                        <h5> Pandan Chiffon Cake </h5>
+                        ₱250.00
+                    </div>
+               </a> </div> 
+			   
+			   <div class="product-item col items">  <a href="20.html">
+                    <img src="products/2/2.jpg" alt="Product Image" class="product-image">
+                    <div class="product-details text-center">
+                        <h5> Empanada </h5>
+                        <p class="price">   ₱25.00 </p>
+                    </div>
+                </a></div>
+				
+				<div class="product-item items col">  <a href="21.html">
+                    <img src="products/3/3.jpg" alt="Product Image" class="product-image">
+                    <div class="product-details text-center">
+                        <h5> Salted Egg Ensaymada </h5>
+                         ₱50.00
+                    </div>
+               </a> </div>
+				
+				<div class="product-item items col"> <a href="22.html">
+                    <img src="products/4/4.jpg" alt="Product Image" class="product-image">
+                    <div class="product-details text-center">
+                        <h5> Ube Cheesedesal </h5>
+                       ₱10.00
+                    </div>
+                </a></div>
+				
+				<div class="product-item items col">  <a href="23.html">
+                    <img src="products/5/5.jpg" alt="Product Image" class="product-image">
+                    <div class="product-details text-center">
+                        <h5> Special Leche Flan </h5>
+                        ₱120.00
+                    </div>
+                </a></div>
+                <div class="product-item col items"> <a href="25.html">
+                    <img src="products/25/25.jpg" alt="Product Image" class="product-image">
+							
+                    <div class="product-details text-center">
+                        <h5> Classic Ensaymada</h5>
+                     ₱35.00
+                    </div>
+               </a> </div>
+			    </div>
+                <br/><br/>
+                <h1 style="font-family: Pacifico;" id="pastries"> <b> Pastries </b> </h1>
+                <hr/>
+                <br/>
+                <div class="row">
+                        <div class="product-item items col" > <a href="26.html">
+                            <img src="products/11/11.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal4">
+                            <div class="product-details text-center">
+                                <h5> Floral Chocolate Cupcake</h5>
+                                ₱75.00
+                            </div>
+                        </a></div>    
+                        
+                        <div class="product-item items col" > <a href="27.html">
+                            <img src="products/12/12.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal5">
+                            <div class="product-details text-center">
+                                <h5>Pistachio Cupcake</h5>
+                                ₱60.00
+        
+                            </div>
+                        </a></div>  
+                        
+                        <div class="product-item col items"> <a href="28.html">
+                            <img src="products/13/13.jpg" alt="Product Image" class="product-image"  data-toggle="modal" data-target="#modal6">
+                                    
+                            <div class="product-details text-center">
+                                <h5>Chocolate Chip Cookie</h5>
+                                 ₱65.00
+                            </div>
+                       </a> </div>
+                                    
+                        <div class="product-item col items"><a href="29.html">
+                            <img src="products/14/14.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal7">
+                            <div class="product-details text-center">
+                                <h5>Choco Ube Delights</h5>
+                                ₱35.00
+                            </div>
+                        </a></div>
+                        
+                        <div class="product-item items col"><a href="30.html">
+                            <img src="products/15/15.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal8">
+                            <div class="product-details text-center">
+                                <h5>Chocolate Cookies</h5>
+                                ₱70.00
+                            </div>
+                        </a></div>
+                        <div class="product-item items col"><a href="31.html">
+                            <img src="products/16/16.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal8">
+                            <div class="product-details text-center">
+                                <h5>Chocolate Cupcakes</h5>
+                                ₱65.00
+                            </div>
+                        </a></div>
+                        </div>
+                        <div class="row">
+                                <div class="product-item items col" > <a href="12.html">
+                                    <img src="products/18/18.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal4">
+                                    <div class="product-details text-center">
+                                        <h5>Chocolate Cookie Dough</h5>
+                                        ₱70.00
+                                    </div>
+                                </a></div>       
+                                <div class="product-item items col" > <a href="33.html">
+                                    <img src="products/20/20.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal4">
+                                    <div class="product-details text-center">
+                                        <h5>Fudgie Borwnie</h5>
+                                        ₱30.00
+                                    </div>
+                                </a></div>    
+                                <div class="product-item items col" > <a href="34.html">
+                                    <img src="products/17/17.jpg" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal4">
+                                    <div class="product-details text-center">
+                                        <h5>Chocolate Crinkles</h5>
+                                        ₱15.00
+                                    </div>
+                                </a></div>    
+                        <div>                       
+		</div>
+</div>
+			
+</div>
+<br/>
+<br/>
+<br/>
+
+
+	<footer class="footer-04" style="font-family: Tw Cen MT; ">
+		<div style="background-color:#983236; height:50vh; overflow:hidden;" >
+			<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
+							<h2 class="footer-heading"><a href="#" class="logo" style="font-family: Pacifico;">Mini bakers</a></h2>
+							<img src="logo.png" width="60px"> <br/><br/>
+							<p>
+More than just a bakery; we aspire to be a cherished part of our community's fabric, intertwining tradition, innovation, and heartfelt connections.</p>
+						</div>
+						
+						<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
+							<h2 class="footer-heading">Categories</h2>
+								<ul class="list-unstyled">
+								  <li><a href="products.html#cakes" class="py-1 d-block">Cakes</a></li>
+								  <li><a href="products.html#bread" class="py-1 d-block">Bread</a></li>
+								  <li><a href="products.html#pastries" class="py-1 d-block">Pastries</a></li>
+								  <li><a href="products.html#filipinodelicacies" class="py-1 d-block">Filipino Delicacies</a></li>
+								</ul>
+						</div>
+						
+						<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
+							<h2 class="footer-heading">Tag cloud</h2>
+							<div class="tagcloud">
+							<a href="#" class="tag-cloud-link">cakes</a>
+							<a href="#" class="tag-cloud-link">chocolate</a>
+							<a href="#" class="tag-cloud-link">cupcake</a>
+							<a href="#" class="tag-cloud-link">filipino delicacies</a>
+							<a href="#" class="tag-cloud-link">custom</a>
+							<a href="#" class="tag-cloud-link">chiffon</a>
+							<a href="#" class="tag-cloud-link">crinkles</a>
+							<a href="#" class="tag-cloud-link">dessert</a>
+							</div>
+						</div>
+						
+						<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
+							<h2 class="footer-heading">Subscribe</h2>
+							<form action="#" class="subscribe-form">
+						    <div class="form-group d-flex">
+								<input type="text" class="form-control rounded-left" placeholder="Enter email address">
+								<button type="submit" class="form-control submit rounded-right"><span class="sr-only">Submit</span><i class="ion-ios-send"></i></button>
+							</div>
+							</form>
+						</div>
+					</div>
+			</div>
+			<div class="w-100 mt-5 border-top py-5"> </div>
+		</div>
+	</footer>
+</div>
+	
+	<script>
+    function redirectToProducts() {
+      window.location.href = "products.html";
+    }
+	</script>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	</body>
+	</html>

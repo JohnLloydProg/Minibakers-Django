@@ -1,5 +1,6 @@
 pyvenv.cfg
 
+/static
 /Scripts
 /Lib
 /Include

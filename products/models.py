@@ -6,9 +6,21 @@ def product_thumbnail_name(instance:'Product', filename:str) -> str:
     ext = filename.split('.')[-1]
     return f'product_thumbnails/{datetime.now().strftime('%Y-%b-%d_%H:%M:%S')}.{ext}'
 
+def product_type_thumbnail_name(instance:'Product', filename:str) -> str:
+    ext = filename.split('.')[-1]
+    return f'product_type_thumbnails/{datetime.now().strftime('%Y-%b-%d_%H:%M:%S')}.{ext}'
+
+class ProductType(models.Model):
+    name = models.CharField(max_length=50, blank=False, null=False)
+    thumbnail = models.ImageField(upload_to=product_type_thumbnail_name, blank=False, null=False)
+
+    def __str__(self):
+        return self.name
+
 
 class Product(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False)
+    type = models.ForeignKey(ProductType, on_delete=models.CASCADE, blank=False, null=False)
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=False, null=False)
     description = models.TextField(blank=False, null=False)
     thumbnail = models.ImageField(upload_to=product_thumbnail_name, blank=False, null=False)

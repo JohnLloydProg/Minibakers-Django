@@ -14,4 +14,9 @@ class aboutView(View):
 class contactView(View):
     def get(self, request):
         return render(request)
+
+
+class ProductView(View):
+    def get(self, request):
+        return render(request, template_name='products.html')
     
