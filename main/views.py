@@ -16,6 +16,20 @@ class contactView(View):
     def get(self, request):
         return render(request, 'contact.html')
 
+    def post(self, request):
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        context = {
+            'success': 'Your suggestion has been sent successfully!',
+            'name': name,
+            'email': email,
+            'message': message
+        }
+
+        return render(request, 'contact.html', context)
+
 
 class ProductView(View):
     def get(self, request):

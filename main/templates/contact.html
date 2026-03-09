@@ -126,7 +126,8 @@
 	 <div class="contactform">
         <h1 class="contactus">Have any suggestions?</h1>
         <div class="contact-form">
-            <form action="#" method="post">
+            <form method="post">
+              {% csrf_token %}
                 <div class="form-group">
                     <label for="name">Your Name</label>
                     <input type="text" id="name" name="name" required>
