@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'products', 'transactions'
+    'products', 'transactions', 'main'
 ]
 
 MIDDLEWARE = [
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'minibakers.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'minibakers' / 'main' / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,29 +125,37 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-AWS_S3_ADDRESSING_STYLE = 'path' 
-AWS_S3_ENDPOINT_URL = 'https://mzzudbpkkibhorihbsti.storage.supabase.co/storage/v1/s3'
-AWS_ACCESS_KEY_ID = '24fde25c1d3d9a398620160c44c19866'
-AWS_SECRET_ACCESS_KEY = '584968fe11b6912634313f9cfdd4b69e8b8b3a666b25b72efa15c533486b785f'
-AWS_S3_REGION_NAME = 'ap-southeast-1'
-AWS_S3_SIGNATURE_VERSION = 's3v4'
-AWS_STORAGE_BUCKET_NAME = 'media'
+if (DEBUG):
+    STATIC_URL = '/static/'
+    STATIC_ROOT = BASE_DIR / "static"
+else:
+    AWS_S3_ADDRESSING_STYLE = 'path' 
+    AWS_S3_ENDPOINT_URL = 'https://mzzudbpkkibhorihbsti.storage.supabase.co/storage/v1/s3'
+    AWS_ACCESS_KEY_ID = '24fde25c1d3d9a398620160c44c19866'
+    AWS_SECRET_ACCESS_KEY = '584968fe11b6912634313f9cfdd4b69e8b8b3a666b25b72efa15c533486b785f'
+    AWS_S3_REGION_NAME = 'ap-southeast-1'
+    AWS_S3_SIGNATURE_VERSION = 's3v4'
+    AWS_STORAGE_BUCKET_NAME = 'media'
 
-STORAGES = {
-    "default": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-        "OPTIONS": {
-            "bucket_name": "media",
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+            "OPTIONS": {
+                "bucket_name": "media",
+            },
         },
-    },
-    "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-        "OPTIONS": {
-            "bucket_name": "static",
+        "staticfiles": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+            "OPTIONS": {
+                "bucket_name": "static",
+            },
         },
-    },
-}
+    }
 
-AWS_QUERYSTRING_AUTH = True
+    AWS_QUERYSTRING_AUTH = True
 
-STATIC_URL = f'https://mzzudbpkkibhorihbsti.supabase.co/storage/v1/object/public/static/'
+    STATIC_URL = f'https://mzzudbpkkibhorihbsti.supabase.co/storage/v1/object/public/static/'
+    STATICFILES_DIRS = [BASE_DIR / 'static']
+
+
+
