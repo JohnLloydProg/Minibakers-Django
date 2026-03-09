@@ -113,7 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Manila'
+
+TIME_INPUT_FORMATS = ('%I:%M %p',)
 
 USE_I18N = True
 
@@ -123,4 +125,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+AWS_S3_ADDRESSING_STYLE = 'path' 
+AWS_S3_ENDPOINT_URL = 'https://mzzudbpkkibhorihbsti.storage.supabase.co/storage/v1/s3'
+AWS_ACCESS_KEY_ID = '24fde25c1d3d9a398620160c44c19866'
+AWS_SECRET_ACCESS_KEY = '584968fe11b6912634313f9cfdd4b69e8b8b3a666b25b72efa15c533486b785f'
+AWS_S3_REGION_NAME = 'ap-southeast-1'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_STORAGE_BUCKET_NAME = 'media'
+
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "OPTIONS": {
+            "bucket_name": "media",
+        },
+    },
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "OPTIONS": {
+            "bucket_name": "static",
+        },
+    },
+}
+
+AWS_QUERYSTRING_AUTH = True
+
+STATIC_URL = f'https://mzzudbpkkibhorihbsti.supabase.co/storage/v1/object/public/static/'
