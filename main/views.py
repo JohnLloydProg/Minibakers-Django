@@ -29,5 +29,5 @@ class ProductView(View):
                 'items': Product.objects.filter(type__id=_type.pk)
             }) 
         print(products)
-        return render(request, 'products.html', {'products':products})
+        return render(request, 'products.html', {'products':products, 'categories':product_types})
     
