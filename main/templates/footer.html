@@ -1,0 +1,47 @@
+<footer class="footer-04" style="font-family: Tw Cen MT; ">
+    <div style="background-color:#983236; height:50vh; overflow:hidden;" >
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 mb-md-0 mb-4">
+                        <h2 class="footer-heading"><a href="#" class="logo" style="font-family: Pacifico;">Mini bakers</a></h2>
+                        <img src="logo.png" width="60px" style="margin-bottom: 3em;">
+                        <p>More than just a bakery; we aspire to be a cherished part of our community's fabric, intertwining tradition, innovation, and heartfelt connections.</p>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-md-0 mb-4">
+                        <h2 class="footer-heading">Categories</h2>
+                        <ul class="list-unstyled">
+                            {% for product_type in categories %}
+                            <li><a href="{% url 'products' %}#{{product_type.name}}" class="py-1 d-block">{{product_type.name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-md-0 mb-4">
+                        <h2 class="footer-heading">Tag cloud</h2>
+                        <div class="tagcloud">
+                        <a href="#" class="tag-cloud-link">cakes</a>
+                        <a href="#" class="tag-cloud-link">chocolate</a>
+                        <a href="#" class="tag-cloud-link">cupcake</a>
+                        <a href="#" class="tag-cloud-link">filipino delicacies</a>
+                        <a href="#" class="tag-cloud-link">custom</a>
+                        <a href="#" class="tag-cloud-link">chiffon</a>
+                        <a href="#" class="tag-cloud-link">crinkles</a>
+                        <a href="#" class="tag-cloud-link">dessert</a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-md-0 mb-4">
+                        <h2 class="footer-heading">Subscribe</h2>
+                        <form action="#" class="subscribe-form">
+                        <div class="form-group d-flex">
+                            <input type="text" class="form-control rounded-left" placeholder="Enter email address">
+                            <button type="submit" class="form-control submit rounded-right"><span class="sr-only">Submit</span><i class="ion-ios-send"></i></button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+        <div class="w-100 mt-5 border-top py-5"> </div>
+    </div>
+</footer>
