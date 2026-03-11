@@ -1,4 +1,4 @@
-< !-- color codes
+/* < !-- color codes
 
 
 Brown: #35200f
@@ -13,7 +13,7 @@ Red: #983236
 White: #faf6f3
  - RGB: rgba(250,246,243,255)
 
--->		
+-->		 */
 		
 		body {
 		  display: flex;
