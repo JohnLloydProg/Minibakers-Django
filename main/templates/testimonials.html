@@ -27,27 +27,7 @@
 
 <body>
 <div class="maincontent"> 
-	<nav class="fixed-top navbar-expand-lg">
-		<ul class="navbarlist">
-		
-		  <li class="leftfloat logo"> <a class="menus" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" width="65px"></a></li>
-		  <li class="leftfloat">  <a class="menus" href="{% url 'home' %}" style="font-size: 40px;" >Mini Bakers</a></li>
-		  <li class="rightfloat"> <a class="menus pd" href="{% url 'contact' %}">Contact Us</a></li>
-		  <li class="rightfloat"> <a class="menus pd active" href="{% url 'testimonials' %}">Testimonials</a></li>
-		  <li class="rightfloat nav-item dropdown">
-			<a class="pd menus nav-link dropdown-toggle" href="{% url 'products' %}" onclick="redirectToProducts()" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			  Products
-			</a>
-			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			  <a class="dropdown-item" href="products.html#cakes">Cakes</a>
-			  <a class="dropdown-item" href="products.html#bread">Bread</a>
-			  <a class="dropdown-item" href="products.html#pastries">Pastries</a>
-			  <a class="dropdown-item" href="products.html#filipinodelicacies">Delicacies</a>
-		  </li>
-		  <li class="rightfloat"> <a class="menus pd" href="{% url 'about' %}">About Us</a></li>
-		  <li><a class="rightfloat menus pd" href="{% url 'home' %}">Home</a></li>
-		</ul>
-	</nav>
+	{% include "header.html" %}
 
 <!-->	Dito nyo lagay content	-->
 	<div class="container">

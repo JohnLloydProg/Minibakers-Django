@@ -1,21 +1,38 @@
 {% load static %}
 <nav class="fixed-top navbar-expand-lg">
     <ul class="navbarlist">
-    
-        <li class="leftfloat logo"> <a class="menus" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" width="65px"></a></li>
-        <li class="leftfloat">  <a class="menus" href="{% url 'home' %}" style="font-size: 40px;" >Mini Bakers</a></li>
-        <li class="rightfloat"> <a class="menus pd" href="{% url 'contact' %}">Contact Us</a></li>
-        <li class="rightfloat"> <a class="menus pd" href="{% url 'testimonials' %}">Testimonials</a></li>
-        <li class="rightfloat nav-item dropdown">
-        <a class="pd menus active nav-link dropdown-toggle" role="button" href="{% url 'products' %}" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Products
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {% for product_type in categories %}
-            <a class="dropdown-item" href="{% url 'products' %}#{{product_type.name}}">{{product_type.name}}</a>
-            {% endfor %}
+        <li class="leftfloat logo"> 
+            <a class="menus" href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">
+                <img src="{% static 'images/logo.png' %}" width="65px">
+            </a>
         </li>
-        <li class="rightfloat"> <a class="menus pd" href="{% url 'about' %}">About Us</a></li>
-        <li><a class="rightfloat menus pd" href="{% url 'home' %}">Home</a></li>
+        <li class="leftfloat">
+            <a class="menus {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}" style="font-size: 40px;">Mini Bakers</a>
+        </li>
+        <li class="rightfloat">
+            <a class="menus pd {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact Us</a>
+        </li>
+        <li class="rightfloat">
+            <a class="menus pd {% if request.path == '/testimonials/' %}active{% endif %}" href="{% url 'testimonials' %}">Testimonials</a>
+        </li>
+        <li class="rightfloat nav-item dropdown">
+        <a class="pd menus {% if request.path == '/products/' %}active{% endif %} nav-link dropdown-toggle" 
+       role="button" href="{% url 'products' %}" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Products
+        </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for product_type in categories %}
+                    <!-- Dropdown links: Go to /products#<product_type.name> -->
+                    <a class="dropdown-item" href="{% url 'products' %}#{{ product_type.name }}" 
+                    class="{% if request.path == '/products/#'|add:product_type.name %}active{% endif %}">
+                    {{ product_type.name }}
+                    </a>
+                {% endfor %}
+            </div>
+        </li>
+        <li class="rightfloat">
+            <a class="menus pd {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}">About Us</a>
+        </li>
+        <li><a class="rightfloat menus pd {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a></li>
     </ul>
 </nav>
