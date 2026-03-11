@@ -1,19 +1,13 @@
-< !-- color codes
-
-
+/* color codes
 Brown: #35200f
- - RGB: rgba(53,32,15,255)
-
+- RGB: rgba(53,32,15,255)
 Off-white/Cream: #faf9e7
- - RGB: rgba(250,249,231,255)
-
+- RGB: rgba(250,249,231,255)
 Red: #983236
- - RGB: rgba(152,50,54,255)
-
+- RGB: rgba(152,50,54,255)
 White: #faf6f3
- - RGB: rgba(250,246,243,255)
-
--->		
+- RGB: rgba(250,246,243,255)
+*/
 		
 		body {
 		  display: flex;
