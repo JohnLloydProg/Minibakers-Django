@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 urlpatterns = [
@@ -6,7 +6,8 @@ urlpatterns = [
     path('about/', views.aboutView.as_view(), name='about'),
     path('contact/', views.contactView.as_view(), name='contact'),
     path('products/', views.ProductView.as_view(), name='products'),
-    path('testimonials/', views.TestimonialsView.as_view(), name='testimonials')
+    path('testimonials/', views.TestimonialsView.as_view(), name='testimonials'),
+    re_path(r'^product/(?P<product_name>.+)/$', views.ProductDetailView.as_view(), name='product_detail'),
     #path('product/1/', views.product1, name='product1'),
     #path('product/2/', views.product2, name='product2'),
     #path('testimonials/', views.testimonials, name='testimonials')

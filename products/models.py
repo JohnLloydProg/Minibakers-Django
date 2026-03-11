@@ -2,13 +2,18 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
 
-def product_thumbnail_name(instance:'Product', filename:str) -> str:
+def product_thumbnail_name(instance:'Product', filename:str) -> str: #MAIN IMAGE
     ext = filename.split('.')[-1]
     return f'product_thumbnails/{datetime.now().strftime('%Y-%b-%d_%H:%M:%S')}.{ext}'
 
 def product_type_thumbnail_name(instance:'Product', filename:str) -> str:
     ext = filename.split('.')[-1]
     return f'product_type_thumbnails/{datetime.now().strftime('%Y-%b-%d_%H:%M:%S')}.{ext}'
+
+def product_image_name(instance: 'ProductImage', filename: str) -> str:
+    ext = filename.split('.')[-1]  # Get file extension
+    product_name = instance.product.name  # Use product name as folder name
+    return f'products/{product_name}/images/{datetime.now().strftime("%Y-%b-%d_%H-%M-%S")}.{ext}'
 
 class ProductType(models.Model):
     name = models.CharField(max_length=50, blank=False, null=False)
@@ -30,6 +35,12 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False, null=False)
+    image = models.ImageField(upload_to=product_image_name, blank=False, null=False)  # Custom path for product images
+    
+    def __str__(self):
+        return f"Image for {self.product.name}"
 
 class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False, null=False)
