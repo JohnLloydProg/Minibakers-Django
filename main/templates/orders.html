@@ -15,133 +15,234 @@
     />
     <link rel="stylesheet" href="{% static 'css/cssfile.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.cdnfonts.com/css/tw-cen-mt" rel="stylesheet" />
 
     <style>
-      .orders-container {
-        margin-top: 50px;
-      }
-
-      .order-card {
-        background-color: white;
-        border-radius: 8px;
-        padding: 50px;
-        margin-bottom: 20px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      }
-
-      .order-card h3 {
+      body {
+        background-color: #faf9e7;
         font-family: "Tw Cen MT", sans-serif;
+        color: #35200f;
+      }
+
+      .orders-page-shell {
+        width: 80vw;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 140px 0 60px 0;
+      }
+
+      .orders-page-title {
+        text-align: center;
+        font-family: "Pacifico", sans-serif;
+        font-size: 40px;
         color: #983236;
+        margin-bottom: 35px;
       }
 
-      .order-card p {
-        font-size: 16px;
-        color: #333;
+      .orders-list-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
       }
 
-      .order-card .order-details {
-        margin-top: 15px;
-        display: none; /* Hidden by default */
+      .orders-card-box {
+        background-color: #fffdf7;
+        border: 2px solid #eadfcb;
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: 0 8px 20px rgba(53, 32, 15, 0.08);
       }
 
-      .order-card .order-details p {
-        font-size: 14px;
+      .orders-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #e7d8c9;
       }
 
-      .order-status {
+      .orders-card-title {
+        font-size: 30px;
         font-weight: bold;
+        color: #983236;
+        margin-bottom: 8px;
       }
 
-      .order-actions {
-        margin-top: 20px;
+      .orders-card-meta {
+        font-size: 20px;
+        margin-bottom: 6px;
       }
 
-      .order-actions a {
+      .orders-card-label {
+        font-weight: bold;
+        color: #35200f;
+      }
+
+      .orders-total-badge {
         background-color: #983236;
-        color: white;
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 5px;
+        color: #faf9e7;
+        padding: 12px 20px;
+        border-radius: 30px;
+        font-size: 22px;
+        font-weight: bold;
+        white-space: nowrap;
       }
 
-      .order-actions a:hover {
-        background-color: #75232e;
+      .orders-section-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #35200f;
+        margin-bottom: 14px;
       }
 
-      button {
-        padding: 10px 20px;
-        background-color: #800000;
-        color: #fff;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        font-size: 16px;
+      .orders-items-list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
       }
 
-      button:hover {
-        background-color: #a24857;
+      .orders-item-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        background-color: #faf4ea;
+        border: 1px solid #e3d2bf;
+        border-radius: 14px;
+        padding: 16px 18px;
+      }
+
+      .orders-item-left {
+        flex: 1;
+      }
+
+      .orders-item-name {
+        font-size: 22px;
+        font-weight: bold;
+        color: #983236;
+        margin-bottom: 4px;
+      }
+
+      .orders-item-meta {
+        font-size: 18px;
+        color: #35200f;
+      }
+
+      .orders-item-price {
+        font-size: 20px;
+        font-weight: bold;
+        color: #35200f;
+        white-space: nowrap;
+      }
+
+      .orders-empty-box {
+        background-color: #fffdf7;
+        border: 2px dashed #d7c3b1;
+        border-radius: 20px;
+        padding: 50px 20px;
+        text-align: center;
+        font-size: 24px;
+        color: #7a5a49;
+      }
+
+      @media (max-width: 768px) {
+        .orders-page-shell {
+          width: 92vw;
+          padding: 120px 0 40px 0;
+        }
+
+        .orders-page-title {
+          font-size: 34px;
+        }
+
+        .orders-card-title {
+          font-size: 24px;
+        }
+
+        .orders-card-meta {
+          font-size: 18px;
+        }
+
+        .orders-total-badge {
+          font-size: 18px;
+          width: 100%;
+          text-align: center;
+        }
+
+        .orders-item-row {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .orders-item-name {
+          font-size: 20px;
+        }
+
+        .orders-item-meta,
+        .orders-item-price {
+          font-size: 17px;
+        }
       }
     </style>
   </head>
 
-  <body style="background-color: #faf9e7">
+  <body>
     <div class="maincontent">
       {% include "header.html" %}
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <h1 style="text-align: center; font-family: Pacifico" class="contactus">
-        Your Orders
-      </h1>
-      <div class="container orders-container">
-        <!-- Loop through orders -->
-        {% for order in orders %}
-        <div class="order-card">
-          <h3><b> Order #{{ order.id }} </b></h3>
-          <p>Ordered at: {{ order.ordered_at }}</p>
-          <p>Total: ₱{{ order.total }}</p>
-          <p class="order-status">Mode of Payment: {{ order.receipt.payment_method }}</p>
 
-          <!-- Toggle order details -->
-          <div class="order-actions text-center">
-            <button class="button" onclick="toggleDetails({{ order.id }})">
-              View Details
-            </button>
-          </div>
+      <div class="orders-page-shell">
+        <h1 class="orders-page-title">Your Orders</h1>
 
-          <!-- Order Details (initially hidden) -->
-          <div class="order-details" id="details-{{ order.id }}">
-            <h5>Products:</h5>
-            <ul>
+        <div class="orders-list-wrap">
+          {% for order in orders %}
+          <div class="orders-card-box">
+            <div class="orders-card-header">
+              <div>
+                <div class="orders-card-title">Order #{{ order.id }}</div>
+                <div class="orders-card-meta">
+                  <span class="orders-card-label">Ordered at:</span>
+                  {{ order.ordered_at }}
+                </div>
+                <div class="orders-card-meta">
+                  <span class="orders-card-label">Mode of Payment:</span>
+                  {{ order.receipt.payment_method }}
+                </div>
+              </div>
+
+              <div class="orders-total-badge">Total: ₱{{ order.total }}</div>
+            </div>
+
+            <div class="orders-section-title">Items</div>
+
+            <div class="orders-items-list">
               {% for item in order.items.all %}
-              <li>
-                {{ item.product.name }} (x{{ item.quantity }}) - ₱{{
-                item.total_price }}
-              </li>
+              <div class="orders-item-row">
+                <div class="orders-item-left">
+                  <div class="orders-item-name">{{ item.product.name }}</div>
+                  <div class="orders-item-meta">
+                    Quantity: x{{ item.quantity }}
+                  </div>
+                </div>
+
+                <div class="orders-item-price">₱{{ item.total_price }}</div>
+              </div>
               {% endfor %}
-            </ul>
+            </div>
           </div>
+          {% empty %}
+          <div class="orders-empty-box">You have no orders yet.</div>
+          {% endfor %}
         </div>
-        {% empty %}
-        <p class="text-center">You have no orders yet.</p>
-        {% endfor %}
       </div>
     </div>
 
     {% include "footer.html" %}
-
-    <script>
-      // Function to toggle visibility of order details
-      function toggleDetails(orderId) {
-        const details = document.getElementById("details-" + orderId);
-        if (details.style.display === "none" || details.style.display === "") {
-          details.style.display = "block";
-        } else {
-          details.style.display = "none";
-        }
-      }
-    </script>
   </body>
 </html>

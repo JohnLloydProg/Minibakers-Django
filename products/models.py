@@ -52,6 +52,11 @@ class CartItem(models.Model):
     quantity = models.IntegerField(default=1)
     inspo_pic = models.ImageField(upload_to=order_inspo_pic_name, blank=True, null=True)
     note = models.TextField()
+
+    @property
+    def total_price(self):
+        return self.product.price * self.quantity
+    
     def __str__(self):
         return f" (Product: {self.product.name}, User: {self.user.username}, Quantity: {self.quantity})"
 

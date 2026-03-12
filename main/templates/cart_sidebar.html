@@ -12,100 +12,262 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-    <link href="{% static 'css/cssfile.css' %}" rel="stylesheet" type="text/css" />
+    <link
+      href="{% static 'css/cssfile.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.cdnfonts.com/css/tw-cen-mt" rel="stylesheet" />
 
     <style>
-      /* Container styles */
       body {
         background-color: #faf9e7;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        padding-bottom: 60px; /* Adds space for the footer */
+        font-family: "Tw Cen MT", sans-serif;
+        color: #35200f;
       }
 
-      .container {
-        max-width: 900px;
+      .cart-page-shell {
+        width: 60vw;
+        max-width: 1500px;
         margin: 0 auto;
-        padding-top: 40px;
-        flex: 1; /* Makes the container take up the available space */
+        padding: 140px 0 60px 0;
       }
 
-      /* Cart Item styling */
-      .cart-item {
-        border: 1px solid #faf9e7;
-        padding: 15px;
-        margin-bottom: 15px;
-        border-radius: 8px;
-        background-color: #faf9e7;
-      }
-
-      h2 {
-        font-size: 36px;
+      .cart-page-title {
         font-family: "Pacifico", sans-serif;
+        font-size: 38px;
         color: #983236;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 35px;
       }
 
-      .cart-btn {
-        background-color: #983236;
-        border-color: #983236;
-        color: #faf9e7;
-        padding: 12px 24px;
-        font-size: 16px;
-        border-radius: 25px;
+      .cart-list-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .cart-card-box {
         width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: 24px;
+        background-color: #fffdf4;
+        border: 2px solid #eadfcb;
+        border-radius: 18px;
+        padding: 24px;
+        box-shadow: 0 6px 18px rgba(53, 32, 15, 0.08);
       }
 
-      .cart-btn:hover {
-        background-color: #35200f;
-        border-color: #35200f;
+      .cart-card-details {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
 
-      .total-price {
-        font-size: 20px;
+      .cart-product-title {
+        font-size: 26px;
         font-weight: bold;
-        margin-top: 20px;
-        text-align: center;
+        color: #983236;
+        margin-bottom: 12px;
       }
 
-      /* Ensure footer is at the bottom */
-      footer {
-        background-color: #35200f;
-        color: #faf9e7;
+      .cart-product-meta {
+        margin-bottom: 8px;
+        font-size: 20px;
+        line-height: 1.4;
+      }
+
+      .cart-product-label {
+        font-weight: bold;
+        color: #35200f;
+      }
+
+      .cart-inspo-side {
+        width: 220px;
+        min-width: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cart-inspo-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 2px solid #d7c3b1;
+        background-color: #f3eadc;
+      }
+
+      .cart-no-image-box {
+        width: 100%;
+        height: 180px;
+        border-radius: 14px;
+        border: 2px dashed #d7c3b1;
+        background-color: #f8f1e7;
+        color: #9a7a67;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
-        padding: 10px 0;
+        padding: 12px;
+        font-size: 18px;
+      }
+
+      .cart-empty-box {
+        background-color: #fffdf4;
+        border: 2px dashed #d7c3b1;
+        border-radius: 18px;
+        padding: 40px 20px;
+        text-align: center;
+        font-size: 22px;
+        color: #7a5a49;
+      }
+
+      .cart-summary-panel {
         margin-top: 30px;
+        background-color: #fffdf4;
+        border: 2px solid #eadfcb;
+        border-radius: 18px;
+        padding: 24px;
+        box-shadow: 0 6px 18px rgba(53, 32, 15, 0.08);
+      }
+
+      .cart-total-text {
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        color: #35200f;
+        margin-bottom: 20px;
+      }
+
+      .cart-checkout-button {
+        display: inline-block;
+        width: 100%;
+        background-color: #983236;
+        color: #faf9e7;
+        border: 2px solid #983236;
+        border-radius: 30px;
+        padding: 14px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .cart-checkout-button:hover {
+        background-color: #faf9e7;
+        color: #983236;
+      }
+
+      .cart-checkout-button:disabled {
+        background-color: #d5b8ba;
+        border-color: #d5b8ba;
+        color: #fffdf4;
+        cursor: not-allowed;
+      }
+
+      @media (max-width: 992px) {
+        .cart-page-shell {
+          width: 92vw;
+          padding: 120px 0 40px 0;
+        }
+
+        .cart-card-box {
+          flex-direction: column;
+        }
+
+        .cart-inspo-side {
+          width: 100%;
+          min-width: 100%;
+        }
+
+        .cart-inspo-image,
+        .cart-no-image-box {
+          width: 100%;
+          height: 220px;
+        }
+
+        .cart-product-title {
+          font-size: 22px;
+        }
+
+        .cart-product-meta {
+          font-size: 18px;
+        }
+
+        .cart-total-text {
+          font-size: 24px;
+        }
       }
     </style>
   </head>
+
   <body>
-    <div class="container">
-       {% include "header.html" %}
-      <h2>Your Cart</h2>
-      <div id="cart-items">
+    {% include "header.html" %}
+
+    <div class="cart-page-shell">
+      <h2 class="cart-page-title">Your Cart</h2>
+
+      <div class="cart-list-wrap">
         {% for item in cart %}
-        <div class="cart-item">
-          <h4>{{ item.product_name }} (x{{ item.quantity }})</h4>
-          <p>Remarks: {{ item.note|default:"None" }}</p>
-          <p>Price: ₱{{ item.total_price }}</p>
-          {% if item.photo_inspo %}
-        <img src="{{ item.photo_inspo.url }}" alt="{{ item.product_name }}" width="100" />
-        {% endif %}
-          <hr />
+        <div class="cart-card-box">
+          <div class="cart-card-details">
+            <div class="cart-product-title">
+              {{ item.product_name }} (x{{ item.quantity }})
+            </div>
+
+            <div class="cart-product-meta">
+              <span class="cart-product-label">Remarks:</span>
+              {{ item.note|default:"None" }}
+            </div>
+
+            <div class="cart-product-meta">
+              <span class="cart-product-label">Price:</span>
+              ₱{{ item.total_price }}
+            </div>
+          </div>
+
+          <div class="cart-inspo-side">
+            {% if item.photo_inspo %}
+            <img
+              src="{{ item.photo_inspo.url }}"
+              alt="{{ item.product_name }}"
+              class="cart-inspo-image"
+            />
+            {% else %}
+            <div class="cart-no-image-box">No inspo image</div>
+            {% endif %}
+          </div>
         </div>
         {% empty %}
-        <p>Your cart is empty.</p>
+        <div class="cart-empty-box">Your cart is empty.</div>
         {% endfor %}
       </div>
-      <div class="total-price">
-        <p><strong>Total Price: ₱{{ total_price }}</strong></p>
-      </div>
-      <div>
-        <!-- Disable button if cart is empty -->
-        <button class="cart-btn" onclick="window.location.href='{% url 'checkout' %}'" {% if cart|length == 0 %} disabled {% endif %}>
+
+      <div class="cart-summary-panel">
+        <div class="cart-total-text">Total Price: ₱{{ total_price }}</div>
+
+        <button
+          class="cart-checkout-button"
+          onclick="window.location.href='{% url 'checkout' %}'"
+          {%
+          if
+          cart|length=""
+          ="0"
+          %}disabled{%
+          endif
+          %}
+        >
           Proceed to Checkout
         </button>
       </div>
