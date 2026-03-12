@@ -531,6 +531,25 @@ White: #faf6f3
 			text-align: center;
 		}
 
+
+		/* Button Styling View cart */
+		.cart-button {
+			background-color: #35200f; /* Brown background */
+			color: #faf9e7; /* Off-white text */
+			border: 2px solid #35200f; /* Brown border */
+			padding: 10px 20px;
+			font-size: 16px;
+			border-radius: 25px;
+			transition: all 0.3s ease;
+		}
+
+		/* Hover Effect */
+		.cart-button:hover {
+			background-color: #faf9e7; /* Off-white background */
+			color: #983236; /* Red text */
+			border: 2px solid #983236; /* Red border */
+		}
+
 		  
 	
 		

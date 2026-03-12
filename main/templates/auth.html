@@ -1,0 +1,168 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <link
+      rel="stylesheet"
+      href="{% static 'css/cssfile.css' %}"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <!-- Inline CSS for the Login Page -->
+    <style>
+      /* Body background color */
+      body {
+        background-color: #faf9e7; /* Off-white */
+        font-family: "Arial", sans-serif;
+      }
+
+      /* Main Content styling */
+      .maincontent {
+        padding-top: 50px; /* Add spacing at the top */
+      }
+
+      /* Form container */
+      .container {
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+
+      /* Login Form container */
+      .bg-white {
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Heading styling */
+      h2 {
+        font-family: "Pacifico", sans-serif;
+        font-size: 2.25rem; /* 36px */
+        color: #983236; /* Red color */
+        margin-bottom: 20px;
+      }
+
+      /* Button Styling */
+      button {
+        background-color: #983236; /* Red background */
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+        width: 100%; /* Make button full width */
+      }
+
+      button:hover {
+        background-color: #75232e; /* Darker Red on hover */
+      }
+
+      /* Input Fields Styling */
+      input[type="text"],
+      input[type="password"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+      }
+
+      input[type="text"]:focus,
+      input[type="password"]:focus,
+      textarea:focus {
+        border-color: #983236; /* Highlight border with red */
+        outline: none;
+      }
+
+      /* Error Message Styling */
+      .text-red-500 {
+        color: red;
+      }
+
+      /* Sign up link styling */
+      .text-sm {
+        font-size: 0.875rem; /* 14px */
+        color: gray;
+      }
+
+      .text-[#983236] {
+        color: #983236; /* Red */
+      }
+
+      .hover\:underline:hover {
+        text-decoration: underline;
+      }
+
+      /* Center-align the form on small screens */
+      @media (max-width: 768px) {
+        .container {
+          padding: 20px;
+        }
+
+        .bg-white {
+          padding: 25px;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#faf9e7]">
+    <div class="maincontent">
+      {% include "header.html" %}
+      <div class="container py-32">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-6">
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+              <h2
+                class="text-center text-3xl font-Pacifico text-[#983236] mb-6"
+              >
+                Login to Mini Bakers
+              </h2>
+
+              <!-- Login Form -->
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+
+                <div class="text-center">
+                  <button
+                    type="submit"
+                    class="bg-[#983236] text-white py-2 px-6 rounded-lg text-lg mt-4 hover:bg-[#75232e]"
+                  >
+                    Login
+                  </button>
+                </div>
+              </form>
+
+              <!-- Error message -->
+              {% if form.errors %}
+              <div class="text-red-500 text-center mt-4">
+                <p>{{ form.errors }}</p>
+              </div>
+              {% endif %}
+
+              <!-- Sign-up link -->
+              <div class="text-center mt-6">
+                <p class="text-sm text-gray-600">
+                  Don't have an account?
+                  <a
+                    href="{% url 'signup' %}"
+                    class="text-[#983236] hover:underline"
+                    >Sign up</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% include "footer.html" %}
+    </div>
+  </body>
+</html>

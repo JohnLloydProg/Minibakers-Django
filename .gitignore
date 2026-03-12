@@ -4,5 +4,5 @@ pyvenv.cfg
 /Scripts
 /Lib
 /Include
-
+venv/
 **/__pycache__
