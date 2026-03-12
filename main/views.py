@@ -125,7 +125,7 @@ class CartView(View):
             return redirect('login')
         
         user = request.user
-
+        product_types = ProductType.objects.all()
         # Fetch the user's cart items from the products_cartitem table
         cart_items_db = CartItem.objects.filter(user_id=user.id)
 
@@ -148,7 +148,7 @@ class CartView(View):
             except Product.DoesNotExist:
                 continue  # Handle the case where the product doesn't exist (optional)
 
-        return render(request, 'cart_sidebar.html', {'cart': cart_items, 'total_price': total_price})
+        return render(request, 'cart_sidebar.html', {'cart': cart_items, 'total_price': total_price, 'categories': product_types})
 
 
 def user_logout(request):
@@ -193,15 +193,16 @@ def add_to_cart(request):
 
     return JsonResponse({'error': 'Invalid method'}, status=405)
 
+@login_required
 def create_order(request):
-    if isinstance(request.user, AnonymousUser):
-        return redirect('login')
-
     if request.method == 'POST':
         user = request.user
-        total_price = float(request.POST.get('total_price'))  # Get total price from the frontend
+        remarks = request.POST.get('remarks')
+        pickup = request.POST.get('pickup')
+        total_price = float(request.POST.get('total_price'))  # Get total price
+        payment_method = request.POST.get('payment_method')
 
-        # Get the cart items for the user
+        # Get cart items
         cart_items = CartItem.objects.filter(user=user)
 
         if not cart_items:
@@ -210,45 +211,67 @@ def create_order(request):
         # Create a receipt
         receipt = Receipt.objects.create(
             paid=False,
-            payment_method='Pending',  # This can be updated later based on the payment method
-            reference_number=str(uuid4()),  # Generate a unique reference number
+            payment_method=payment_method,  # Handle payment method later
+            reference_number=str(uuid4()),
         )
 
-        # Create the order
+        # Create an order
         order = Order.objects.create(
             user=user,
             receipt=receipt,
             total=total_price,
+            remarks=remarks,
+            pickup=pickup,
             date=datetime.today().date(),
             ordered_at=datetime.now(),
         )
 
-        # Loop through the cart items and create order items
+        total_order_price = 0
+
+        # Copy cart items to order items
         for cart_item in cart_items:
             product = cart_item.product
             item_total_price = product.price * cart_item.quantity
+            total_order_price += item_total_price
 
-            # Create the order item
             OrderItem.objects.create(
                 order=order,
                 product=product,
                 quantity=cart_item.quantity,
-                inspo_pic=cart_item.photo_inspo,  # Copy the inspo photo if exists
-                note=cart_item.remarks,  # Copy remarks from cart item
             )
 
-            # Optional: Delete the cart item after adding to the order
+            # Delete cart item after it's added to the order
             cart_item.delete()
 
-        return JsonResponse({'success': True, 'order_id': order.id}, status=200)
+        # Update the total price of the order
+        order.total = total_order_price
+        order.save()
+
+        return redirect(reverse('orders'))
 
     return JsonResponse({'error': 'Invalid method'}, status=405)
 
 
-def orders_view(request):
+class OrderView(View):
+    def get(self, request):
     # Fetch the orders for the logged-in user
-    if isinstance(request.user, AnonymousUser):
-        return redirect('login')
+        product_types = ProductType.objects.all()
+        if isinstance(request.user, AnonymousUser):
+            return redirect('login')
+        
+        orders = Order.objects.filter(user=request.user)
+        return render(request, 'orders.html', {'orders': orders, 'categories': product_types})
 
-    orders = Order.objects.filter(user=request.user)
-    return render(request, 'orders.html', {'orders': orders})
+
+class CheckoutView(View):
+    def get(self, request):
+    # Fetch the orders for the logged-in user
+        product_types = ProductType.objects.all()
+        if isinstance(request.user, AnonymousUser):
+            return redirect('login')
+        
+        cart_items = CartItem.objects.filter(user=request.user)
+        total_price = sum([item.product.price * item.quantity for item in cart_items])
+
+        orders = Order.objects.filter(user=request.user)
+        return render(request, 'checkout.html', {'orders': orders, 'categories': product_types, 'cart_items': cart_items, 'total_price': total_price})
