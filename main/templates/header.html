@@ -1,7 +1,7 @@
 {% load static %}
 <nav class="fixed-top navbar-expand-lg">
   <ul class="navbarlist">
-    <!-- Logout and View Cart buttons visible only when the user is logged in -->
+    <!-- Buttons for logged-in users -->
     {% if user.is_authenticated %}
       <li class="rightfloat">
         <a class="menus pd" href="{% url 'logout' %}">
@@ -60,6 +60,38 @@
             "
           >
             View Cart
+          </button>
+        </a>
+      </li>
+    {% else %}
+      <!-- Button for logged-out users -->
+      <li class="rightfloat">
+        <a class="menus pd" href="{% url 'login' %}">
+          <button
+            class="btn btn-outline-primary"
+            style="
+              background-color: #983236;
+              color: #faf9e7;
+              border: 2px solid #983236;
+              padding: 10px 20px;
+              font-size: 16px;
+              border-radius: 25px;
+              transition: all 0.3s ease;
+              margin-left: -25px;
+              margin-top: -15px;
+            "
+            onmouseover="
+              this.style.backgroundColor = '#faf9e7';
+              this.style.color = '#983236';
+              this.style.border = '2px solid #983236';
+            "
+            onmouseout="
+              this.style.backgroundColor = '#983236';
+              this.style.color = '#faf9e7';
+              this.style.border = '2px solid #983236';
+            "
+          >
+            Login
           </button>
         </a>
       </li>

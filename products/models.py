@@ -2,6 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
 
+def order_inspo_pic_name(instance:'CartItem', filename:str)-> str:
+    ext = filename.split('.')[-1]
+    return f'order_inspo_pics/{datetime.now().strftime('%Y-%b-%d_%H:%M:%S')}.{ext}'
+
 def product_thumbnail_name(instance:'Product', filename:str) -> str: #MAIN IMAGE
     ext = filename.split('.')[-1]
     return f'product_thumbnails/{datetime.now().strftime('%Y-%b-%d_%H:%M:%S')}.{ext}'
@@ -46,9 +50,10 @@ class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False, null=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
     quantity = models.IntegerField(default=1)
-    
+    inspo_pic = models.ImageField(upload_to=order_inspo_pic_name, blank=True, null=True)
+    note = models.TextField()
     def __str__(self):
-        return f"{self.user.username} - {self.product.name} ({self.quantity})"
+        return f" (Product: {self.product.name}, User: {self.user.username}, Quantity: {self.quantity})"
 
 
 class Review(models.Model):

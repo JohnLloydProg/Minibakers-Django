@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
-from products.models import Product, ProductType, CartItem
+from products.models import Product, ProductType, Product, CartItem
+from transactions.models import Order, Receipt, OrderItem
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
@@ -11,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from uuid import uuid4
 from django.http import JsonResponse
+from datetime import datetime
 class indexView(View):
     def get(self, request):
         product_types = ProductType.objects.all()
@@ -62,7 +64,7 @@ class ProductView(View):
     
 class ProductDetailView(View):
     def get(self, request, product_name):
-        # Slugify the product name if needed for URL-friendly handling
+        
         product = Product.objects.filter(name__iexact=product_name).first()
         product_types = ProductType.objects.all()
         if not product:
@@ -116,11 +118,32 @@ def signup(request):
 
 
 
+class CartView(View):
+    def get(self, request):
+        # Retrieve the current user
+        user = request.user
 
-def cart_view(request):
-    cart = request.session.get('cart', [])
-    total_price = sum(item['total_price'] for item in cart)
-    return render(request, 'cart_sidebar.html', {'cart': cart, 'total_price': total_price})
+        # Fetch the user's cart items from the products_cartitem table
+        cart_items_db = CartItem.objects.filter(user_id=user.id)
+
+        cart_items = []
+        total_price = 0
+
+        for item in cart_items_db:
+            try:
+                product = Product.objects.get(id=item.product_id)  # Fetch the product by ID
+                item_total_price = product.price * item.quantity  # Calculate total price per item
+                total_price += item_total_price  # Add to the overall total price
+
+                cart_items.append({
+                    'product': product,
+                    'quantity': item.quantity,
+                    'total_price': item_total_price,
+                })
+            except Product.DoesNotExist:
+                continue  # Handle the case where the product doesn't exist (optional)
+
+        return render(request, 'cart_sidebar.html', {'cart': cart_items, 'total_price': total_price})
 
 
 def user_logout(request):
@@ -134,29 +157,80 @@ def user_logout(request):
 def add_to_cart(request):
     if request.method == 'POST':
         product_id = request.POST.get('product_id')
-        quantity = request.POST.get('quantity')
+        quantity = int(request.POST.get('quantity'))
         remarks = request.POST.get('remarks')
-        price = request.POST.get('price')
-        total_price = request.POST.get('total_price')
-        photo_inspo = request.FILES.get('photo_inspo')  # For the inspo image
+        photo_inspo = request.FILES.get('photo_inspo')  # File from the request
 
         try:
             product = Product.objects.get(id=product_id)
         except Product.DoesNotExist:
             return JsonResponse({'error': 'Product not found'}, status=404)
 
-        # Create CartItem
-        cart_item = CartItem.objects.create(
-            user=request.user,
+        user = request.user  # Using logged-in user's ID directly
+
+        # Check if the product is already in the cart (products_cartitem)
+        cart_item, created = CartItem.objects.get_or_create(
+            user=user,
             product=product,
-            quantity=quantity,
+            defaults={'quantity': quantity},
+            note=remarks,
+            inspo_pic=photo_inspo
         )
 
-        # Handle the inspo photo if present
-        if photo_inspo:
-            cart_item.inspo_pic = photo_inspo
+        if not created:
+            # If the item already exists in the cart, update the quantity
+            cart_item.quantity += quantity
             cart_item.save()
 
-        return JsonResponse({'message': 'Item added to cart', 'cart_item_id': cart_item.id}, status=200)
+        return JsonResponse({'message': 'Item added to cart'}, status=200)
+
+    return JsonResponse({'error': 'Invalid method'}, status=405)
+
+@login_required
+def create_order(request):
+    if request.method == 'POST':
+        user = request.user
+        total_price = float(request.POST.get('total_price'))  # Get total price from the frontend
+
+        # Get the cart items for the user
+        cart_items = CartItem.objects.filter(user=user)
+
+        if not cart_items:
+            return JsonResponse({'error': 'Your cart is empty'}, status=400)
+
+        # Create a receipt
+        receipt = Receipt.objects.create(
+            paid=False,
+            payment_method='Pending',  # This can be updated later based on the payment method
+            reference_number=str(uuid4()),  # Generate a unique reference number
+        )
+
+        # Create the order
+        order = Order.objects.create(
+            user=user,
+            receipt=receipt,
+            total=total_price,
+            date=datetime.today().date(),
+            ordered_at=datetime.now(),
+        )
+
+        # Loop through the cart items and create order items
+        for cart_item in cart_items:
+            product = cart_item.product
+            item_total_price = product.price * cart_item.quantity
+
+            # Create the order item
+            OrderItem.objects.create(
+                order=order,
+                product=product,
+                quantity=cart_item.quantity,
+                inspo_pic=cart_item.photo_inspo,  # Copy the inspo photo if exists
+                note=cart_item.remarks,  # Copy remarks from cart item
+            )
+
+            # Optional: Delete the cart item after adding to the order
+            cart_item.delete()
+
+        return JsonResponse({'success': True, 'order_id': order.id}, status=200)
 
     return JsonResponse({'error': 'Invalid method'}, status=405)
