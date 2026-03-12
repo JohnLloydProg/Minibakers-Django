@@ -102,7 +102,7 @@
           <h3><b> Order #{{ order.id }} </b></h3>
           <p>Ordered at: {{ order.ordered_at }}</p>
           <p>Total: ₱{{ order.total }}</p>
-          <p class="order-status">Status: {{ order.status }}</p>
+          <p class="order-status">Mode of Payment: {{ order.receipt.payment_method }}</p>
 
           <!-- Toggle order details -->
           <div class="order-actions text-center">

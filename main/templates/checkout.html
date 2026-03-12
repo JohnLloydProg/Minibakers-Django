@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container my-5">
+    <h1 class="text-center mb-4">Checkout</h1>
+
+    <div class="row">
+        <!-- Cart Items Table -->
+        <div class="col-md-8">
+            <h3>Shopping Cart</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.product.price }}</td>
+                        <td>{{ item.total_price }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="3"><strong>Total</strong></td>
+                        <td><strong>{{ total_price }}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Order Form -->
+        <div class="col-md-4">
+            <h3>Order Details</h3>
+            <form method="POST" action="{% url 'create_order' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="remarks">Remarks</label>
+                    <textarea class="form-control" id="remarks" name="remarks" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="pickup">Pickup</label>
+                    <select class="form-control" id="pickup" name="pickup">
+                        <option value="True">Yes</option>
+                        <option value="False">No</option>
+                    </select>
+                </div>
+
+                <input type="hidden" name="total_price" value="{{ total_price }}">
+                
+                <div class="form-group">
+                    <label for="payment_method">Payment Method</label>
+                    <select class="form-control" id="payment_method" name="payment_method">
+                        <option value="Gcash">Gcash</option>
+                        <option value="Cash on Delivery">Cash on Delivery</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

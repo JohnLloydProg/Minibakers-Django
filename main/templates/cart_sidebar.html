@@ -12,32 +12,35 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-    <link
-      href="{% static 'css/cssfile.css' %}"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="{% static 'css/cssfile.css' %}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-    <!-- Inline CSS for Cart Page -->
     <style>
-      /* Container styling */
+      /* Container styles */
+      body {
+        background-color: #faf9e7;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 60px; /* Adds space for the footer */
+      }
+
       .container {
         max-width: 900px;
         margin: 0 auto;
         padding-top: 40px;
+        flex: 1; /* Makes the container take up the available space */
       }
 
       /* Cart Item styling */
       .cart-item {
         border: 1px solid #faf9e7;
-        padding: 20px;
-        margin-bottom: 20px;
+        padding: 15px;
+        margin-bottom: 15px;
         border-radius: 8px;
         background-color: #faf9e7;
       }
 
-      /* Heading */
       h2 {
         font-size: 36px;
         font-family: "Pacifico", sans-serif;
@@ -46,15 +49,6 @@
         margin-bottom: 30px;
       }
 
-      /* Price styling */
-      #total-price {
-        font-size: 20px;
-        font-weight: bold;
-        margin-top: 20px;
-        text-align: center;
-      }
-
-      /* Button styling */
       .cart-btn {
         background-color: #983236;
         border-color: #983236;
@@ -66,26 +60,30 @@
       }
 
       .cart-btn:hover {
-        background-color: #35200f; /* Brown background */
+        background-color: #35200f;
         border-color: #35200f;
       }
 
-      /* Cart Item Text */
-      .cart-btn p {
-        font-size: 16px;
-        color: #983236;
+      .total-price {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+        text-align: center;
       }
 
-      /* Margin for Cart Items */
-      .cart-btn h4 {
-        font-size: 20px;
-        color: #983236;
-        margin-bottom: 15px;
+      /* Ensure footer is at the bottom */
+      footer {
+        background-color: #35200f;
+        color: #faf9e7;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 30px;
       }
     </style>
   </head>
-  <body style="background-color: #faf9e7; padding: 20vh">
+  <body>
     <div class="container">
+       {% include "header.html" %}
       <h2>Your Cart</h2>
       <div id="cart-items">
         {% for item in cart %}
@@ -93,20 +91,26 @@
           <h4>{{ item.product_name }} (x{{ item.quantity }})</h4>
           <p>Remarks: {{ item.note|default:"None" }}</p>
           <p>Price: ₱{{ item.total_price }}</p>
-          <img src="{{ item.photo_inspo.url }}" alt="item.product_name">
+          {% if item.photo_inspo %}
+        <img src="{{ item.photo_inspo.url }}" alt="{{ item.product_name }}" width="100" />
+        {% endif %}
           <hr />
         </div>
+        {% empty %}
+        <p>Your cart is empty.</p>
         {% endfor %}
       </div>
-      <div id="total-price">
+      <div class="total-price">
         <p><strong>Total Price: ₱{{ total_price }}</strong></p>
       </div>
       <div>
-        <button class="cart-btn" onclick="checkout()">
+        <!-- Disable button if cart is empty -->
+        <button class="cart-btn" onclick="window.location.href='{% url 'checkout' %}'" {% if cart|length == 0 %} disabled {% endif %}>
           Proceed to Checkout
         </button>
       </div>
     </div>
 
+    {% include "footer.html" %}
   </body>
 </html>
