@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from django.views import View
-from products.models import Product, ProductType
+from products.models import Product, ProductType, CartItem
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse
 from .forms import SignUpForm
-
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from uuid import uuid4
+from django.http import JsonResponse
 class indexView(View):
     def get(self, request):
         product_types = ProductType.objects.all()
@@ -112,33 +116,47 @@ def signup(request):
 
 
 
-def add_to_cart(request):
-    if request.method == 'POST':
-        product_id = request.POST.get('product_id')
-        quantity = int(request.POST.get('quantity'))
-        remarks = request.POST.get('remarks', '')
-        photo_inspo = request.FILES.getlist('photo_inspo')
-
-        product = Product.objects.get(id=product_id)
-        total_price = product.price * quantity
-
-        # Add item to session cart
-        cart = request.session.get('cart', [])
-        cart_item = {
-            'product_id': product.id,
-            'product_name': product.name,
-            'quantity': quantity,
-            'remarks': remarks,
-            'photo_inspo': [file.name for file in photo_inspo],
-            'price': product.price,
-            'total_price': total_price
-        }
-        cart.append(cart_item)
-        request.session['cart'] = cart
-
-        return JsonResponse({'message': 'Item added to cart', 'cart': cart})
 
 def cart_view(request):
     cart = request.session.get('cart', [])
     total_price = sum(item['total_price'] for item in cart)
     return render(request, 'cart_sidebar.html', {'cart': cart, 'total_price': total_price})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('login')
+
+
+#CART FUNCTIONALITY
+
+@login_required
+def add_to_cart(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        quantity = request.POST.get('quantity')
+        remarks = request.POST.get('remarks')
+        price = request.POST.get('price')
+        total_price = request.POST.get('total_price')
+        photo_inspo = request.FILES.get('photo_inspo')  # For the inspo image
+
+        try:
+            product = Product.objects.get(id=product_id)
+        except Product.DoesNotExist:
+            return JsonResponse({'error': 'Product not found'}, status=404)
+
+        # Create CartItem
+        cart_item = CartItem.objects.create(
+            user=request.user,
+            product=product,
+            quantity=quantity,
+        )
+
+        # Handle the inspo photo if present
+        if photo_inspo:
+            cart_item.inspo_pic = photo_inspo
+            cart_item.save()
+
+        return JsonResponse({'message': 'Item added to cart', 'cart_item_id': cart_item.id}, status=200)
+
+    return JsonResponse({'error': 'Invalid method'}, status=405)

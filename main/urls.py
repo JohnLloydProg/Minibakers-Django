@@ -9,11 +9,12 @@ urlpatterns = [
     path('testimonials/', views.TestimonialsView.as_view(), name='testimonials'),
     re_path(r'^product/(?P<product_name>.+)/$', views.ProductDetailView.as_view(), name='product_detail'),
 
-    path('add-to-cart/', views.add_to_cart, name='add_to_cart'),
+    path('add_to_cart/', views.add_to_cart, name='add_to_cart'),
     path('cart/', views.cart_view, name='cart'),
 
     path('signup/', views.signup, name='signup'),
     path('login/', views.LoginView.as_view(), name='login'),
+    path('logout/', views.user_logout, name='logout'),
     #path('product/1/', views.product1, name='product1'),
     #path('product/2/', views.product2, name='product2'),
     #path('testimonials/', views.testimonials, name='testimonials')

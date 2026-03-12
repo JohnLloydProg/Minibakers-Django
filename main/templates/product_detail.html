@@ -213,6 +213,7 @@
     </div>
 
     <script>
+      const csrfToken = '{{ csrf_token }}';
       let quantity = 1;
       let price = {{ product.price }};
       let totalPrice = price;
@@ -249,28 +250,42 @@
         }
       });
 
-      // Add product to cart
-      function addToCart() {
+      // Add product to cart (send to Django API)
+      async function addToCart() {
         let remarks = document.getElementById('remarks').value;
         let photoInspo = document.getElementById('photo-inspo').files;
 
-        let cartItem = {
-          productId: {{ product.id }},
-          productName: "{{ product.name }}",
-          quantity: quantity,
-          remarks: remarks,
-          photoInspo: Array.from(photoInspo).map(file => file.name), // Store only file names
-          price: price,
-          totalPrice: totalPrice
-        };
+        let formData = new FormData();
+        formData.append('product_id', {{ product.id }});
+        formData.append('quantity', quantity);
+        formData.append('remarks', remarks);
+        formData.append('price', price);
+        formData.append('total_price', totalPrice);
 
-        // Store cart items in session (localStorage as a cache example)
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.push(cartItem);
-        localStorage.setItem('cart', JSON.stringify(cart));
+        // Append the inspo photo (if exists)
+        if (photoInspo.length > 0) {
+          formData.append('photo_inspo', photoInspo[0]);
+        }
 
-        closeModal();
-        alert('Item added to cart!');
+        try {
+          let response = await fetch("{% url 'add_to_cart' %}", {
+            method: 'POST',
+            headers: {
+              'X-CSRFToken': csrfToken  // Add CSRF token in headers
+            },
+            body: formData,
+          });
+
+          if (response.ok) {
+            alert('Item added to cart!');
+            closeModal();
+          } else {
+            alert('Failed to add item to cart.');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('There was an error processing your request.');
+        }
       }
     </script>
   </body>

@@ -46,6 +46,9 @@ class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False, null=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
     quantity = models.IntegerField(default=1)
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.product.name} ({self.quantity})"
 
 
 class Review(models.Model):
