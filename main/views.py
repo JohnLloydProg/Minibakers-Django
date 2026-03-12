@@ -1,16 +1,18 @@
 from django.shortcuts import render
 from django.views import View
-from products.models import Product, ProductType, CartItem
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse
-from .forms import SignUpForm
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from uuid import uuid4
 from django.http import JsonResponse
+from .forms import SignUpForm
+from products.models import Product, ProductType, CartItem
+from transactions.models import Order
+
 class indexView(View):
     def get(self, request):
         product_types = ProductType.objects.all()
@@ -160,3 +162,9 @@ def add_to_cart(request):
         return JsonResponse({'message': 'Item added to cart', 'cart_item_id': cart_item.id}, status=200)
 
     return JsonResponse({'error': 'Invalid method'}, status=405)
+
+
+def orders_view(request):
+    # Fetch the orders for the logged-in user
+    orders = Order.objects.filter(user=request.user)
+    return render(request, 'orders.html', {'orders': orders})
