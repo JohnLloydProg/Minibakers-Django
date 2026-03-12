@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Sign Up</title>
 
     <link
       rel="stylesheet"
@@ -13,7 +13,7 @@
     />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-    <!-- Inline CSS for the Login Page -->
+    <!-- Inline CSS for the Sign Up Page -->
     <style>
       /* Body background color */
       body {
@@ -23,7 +23,7 @@
 
       /* Main Content styling */
       .maincontent {
-        padding-top: 50px; /* Add spacing at the top */
+        padding-top: 50px;
       }
 
       /* Form container */
@@ -32,7 +32,7 @@
         padding-bottom: 50px;
       }
 
-      /* Login Form container */
+      /* Sign-Up Form container */
       .bg-white {
         background-color: white;
         padding: 40px;
@@ -66,7 +66,7 @@
       /* Input Fields Styling */
       input[type="text"],
       input[type="password"],
-      textarea {
+      input[type="email"] {
         width: 100%;
         padding: 10px;
         margin-bottom: 15px;
@@ -76,7 +76,7 @@
 
       input[type="text"]:focus,
       input[type="password"]:focus,
-      textarea:focus {
+      input[type="email"]:focus {
         border-color: #983236; /* Highlight border with red */
         outline: none;
       }
@@ -86,7 +86,7 @@
         color: red;
       }
 
-      /* Sign up link styling */
+      /* Sign-in link styling */
       .text-sm {
         font-size: 0.875rem; /* 14px */
         color: gray;
@@ -122,10 +122,10 @@
               <h2
                 class="text-center text-3xl font-Pacifico text-[#983236] mb-6"
               >
-                Login to Mini Bakers
+                Create Your Account
               </h2>
 
-              <!-- Login Form -->
+              <!-- Sign Up Form -->
               <form method="POST">
                 {% csrf_token %} {{ form.as_p }}
 
@@ -134,7 +134,7 @@
                     type="submit"
                     class="bg-[#983236] text-white py-2 px-6 rounded-lg text-lg mt-4 hover:bg-[#75232e]"
                   >
-                    Login
+                    Sign Up
                   </button>
                 </div>
               </form>
@@ -148,24 +148,16 @@
 
               <br />
               <br />
-
-              <!-- Sign-up link -->
+              <!-- Sign-in link -->
               <div class="text-center mt-6">
                 <p class="text-sm text-gray-600">
-                  Don't have an account? {% comment %}
+                  Already have an account?
                   <a
-                    href="{% url 'signup' %}"
-                    class="text-[#983236] hover:underline"
-                    {%
-                    endcomment
-                    %}
-                    {%
-                    comment
-                    %}
+                    href="{% url 'login' %}"
+                    class="hover:underline"
+                    style="color: #983236"
+                    >Login</a
                   >
-                    {% endcomment %} Sign up {% comment %}
-                  </a>
-                  {% endcomment %}
                 </p>
               </div>
             </div>

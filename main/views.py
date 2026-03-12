@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse
+from .forms import SignUpForm
 
 class indexView(View):
     def get(self, request):
@@ -88,13 +89,26 @@ class LoginView(View):
             if user is not None:
                 login(request, user)
 
-                # Redirect to the next page or home
                 next_page = request.GET.get('next', reverse('home'))
                 return redirect(next_page)
             else:
                 form.add_error(None, 'Invalid credentials')
         return render(request, 'auth.html', {'form': form})
     
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            # Create new user
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            return redirect('login')  # Redirect to login page after successful sign up
+    else:
+        form = SignUpForm()
+
+    return render(request, 'signup.html', {'form': form})
 
 
 
