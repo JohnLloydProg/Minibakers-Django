@@ -112,8 +112,37 @@
 
     <script>
       function checkout() {
-        // Implement checkout functionality here
-        alert("Proceeding to checkout...");
+        // Prepare data to send to the backend
+        const csrfToken = '{{ csrf_token }}';
+        
+        // You can also get the total price and remarks if needed
+        let totalPrice = {{ total_price }};
+        
+        // Sending the request to Django to create the order
+        fetch("{% url 'checkout' %}", {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': csrfToken,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            'total_price': totalPrice,
+            // You can add more data here if needed (e.g., remarks)
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Checkout successful!');
+            window.location.href = "{% url 'order_confirmation' %}"; // Redirect to order confirmation page
+          } else {
+            alert('Error during checkout!');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('There was an error processing your request.');
+        });
       }
     </script>
   </body>
