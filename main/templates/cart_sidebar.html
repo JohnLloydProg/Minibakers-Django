@@ -91,7 +91,9 @@
           <h4>{{ item.product_name }} (x{{ item.quantity }})</h4>
           <p>Remarks: {{ item.note|default:"None" }}</p>
           <p>Price: ₱{{ item.total_price }}</p>
-          <img src="{{ item.photo_inspo.url }}" alt="item.product_name" width="100" />
+          {% if item.photo_inspo %}
+        <img src="{{ item.photo_inspo.url }}" alt="{{ item.product_name }}" width="100" />
+        {% endif %}
           <hr />
         </div>
         {% empty %}
