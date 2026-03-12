@@ -451,7 +451,7 @@ White: #faf6f3
 		  }
 		
 		.about {
-			background-image: url("../images/bg5.png");
+			background-image: url("../../static/images/bg5.png");
 			background-size: cover;
 			background-attachment: fixed;
 			background-position: center;
@@ -483,7 +483,7 @@ White: #faf6f3
 		}
 		
 		.about3 {
-			background-image: url("../images/bg2.png");
+			background-image: url("../../static/images/bg2.png");
 			background-size: cover;
 			background-attachment: fixed;
 			background-position: center;
@@ -499,7 +499,7 @@ White: #faf6f3
 		
 		
 		.about4 {
-			background-image: url("../images/bg3.png");
+			background-image: url("../../static/images/bg3.png");
 			background-size: cover;
 			background-attachment: fixed;
 			background-position: center;
@@ -515,7 +515,7 @@ White: #faf6f3
 		
 		.about5 {
 			padding-top:100px;
-			background-image: url("../images/bg4.png");
+			background-image: url("../../static/images/bg4.png");
 			background-size: cover;
 			background-attachment: fixed;
 			background-position: center;

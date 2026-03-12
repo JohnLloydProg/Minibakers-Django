@@ -1,3 +1,4 @@
+{% load static %}
 <footer class="footer-04" style="font-family: Tw Cen MT">
   <div style="background-color: #983236; height: 50vh; overflow: hidden">
     <div class="container">
@@ -8,7 +9,11 @@
               >Mini bakers</a
             >
           </h2>
-          <img src="logo.png" width="60px" style="margin-bottom: 3em" />
+          <img
+            src="{% static 'images/logo.png' %}"
+            width="60px"
+            style="margin-bottom: 3em"
+          />
           <p>
             More than just a bakery; we aspire to be a cherished part of our
             community's fabric, intertwining tradition, innovation, and

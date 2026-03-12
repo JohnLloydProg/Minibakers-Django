@@ -48,7 +48,7 @@
 					<p class="contentfont" style="font-size:20px;"> What started as a simple hobby, baking treats for family and friends, soon blossomed into a full-fledged business. Every recipe, every creation is infused with the warmth and care that only a mother can provide.
 					</p>
 						<div class="button-effect"> <br/>
-						<a class="effect effect-5" href="about.html" title="Know more">Know more</a>
+						<a class="effect effect-5" href="{% url 'about' %}" title="Know more">Know more</a>
 						</div>
 				</div>
 				
@@ -69,30 +69,15 @@
 				</div>
 				
 					<div class="row">
+						{% for product_type in categories %}
 						<div class="col">
 							<div class="img-box">
-								<a href="products.html#cakes"> <img src="{% static 'images/cakescateg.png' %}" alt="cakes"> </a>
+								<a href="{% url 'products' %}#{{ product_type.name }}"> <img src="{{ product_type.thumbnail.url }}" alt="cakes"> </a>
 							</div>
 						</div>
-
-						<div class="col">
-							<div class="img-box">
-								<a href="products.html#bread"> <img src="{% static 'images/breadcateg.png' %}"  alt="bread"> </a>
-							</div>
-						</div>
-
-						<div class="col">
-							<div class="img-box">
-								<a href="products.html#pastries"> <img src="{% static 'images/pastriescateg.png' %}"  alt="pastries"> </a>
-							</div>
-						</div>
-						
-						<div class="col">
-							<div class="img-box">
-								<a href="products.html#filipinodelicacies"> <img src="{% static 'images/filipinodelicaciescateg.png' %}"  alt="filipino delicacies"> </a>
-							</div>
-						</div>
+						{% endfor %}
 					</div>
+				
 			</div>
 
 		</div>
@@ -107,88 +92,37 @@
 												<br/>
 												<br/>
 												<div class="row" style="padding-left:100px;">
-													<div id="carousel1" class="carousel">
-														<div class="carousel-inner">
-															<div class="carousel-item active" style="padding-left:200px;">
-																<div class="card" >
-																	<div class="img-wrapper">	
-																		<div class="slider-item items col" > <a href="15.html">
-																		<img src="products/10/10.jpg" alt="Product Image" style="padding-top:20px;" width="100" height="100" class="product-image">
-																		
-																		</a></div>   
-																	</div>
-																	<div class="card-body mt-5"> <br/> <br/>
-																		<h5 class="card-title">Brioche Loaf</h5>
-																		<p class="card-text">Dive into the buttery bliss of our freshly baked brioche loaf at Mini Bakers, where each golden-brown slice is a testament to the perfect blend of craftsmanship and flavor that defines our artisanal approach to baking</p>
-																			
-																		<center> <a href="15.html"  class="btn btn-rust" style="background-color:#983236; color:white;">View More</a> </center>
-																	</div>
-																</div>
-															</div>
-															
-															
-															<div class="carousel-item" style="padding-left:200px;">
+												<div id="carousel1" class="carousel">
+													<div class="carousel-inner">
+														{% for product in products %}
+															<div class="carousel-item {% if forloop.first %}active{% endif %}" style="padding-left:200px;">
 																<div class="card">
-																	<div class="img-wrapper">	<div class="slider-item items col" > <a href="6.html">
-																		<img src="products/30/30.jpg" alt="Product Image" style="padding-top:20px;" width="570px" height="570px" class="product-image">
-																		
-																	</a></div>  </div>
-																	<div class="card-body mt-5"> <br/> <br/>
-																		<h5 class="card-title">Delight in the irresistible combination </h5> of moist cake layers and decadent cookie crumbles with our signature Cookie Crumble Cake at Mini Bakers, where every bite is a symphony of textures and flavors that will elevate your dessert experience to new heights</p>
-																			
-																		<center> <a href="6.html"  class="btn btn-rust" style="background-color:#983236; color:white;">View More</a> </center>
+																	<div class="img-wrapper">
+																		<div class="slider-item items col">
+																			<a href="{% url 'product_detail' product_name=product.name %}">
+																				<img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" style="padding-top:20px;" width="570px" height="570px" class="product-image">
+																			</a>
+																		</div>
+																	</div>
+																	<div class="card-body mt-5">
+																		<h5 class="card-title">{{ product.name }}</h5>
+																		<p class="card-text">{{ product.description }}</p>
+																		<center><a href="{% url 'product_detail' product_name=product.name %}" class="btn btn-rust" style="background-color:#983236; color:white;">View More</a></center>
 																	</div>
 																</div>
 															</div>
-															
-															
-															<div class="carousel-item" style="padding-left:200px;">
-																<div class="card">
-																	<div class="img-wrapper"> <div class="slider-item col items"> <a href="25.html">
-																			<img src="{% static 'images/products/Filipino Delicacies/Cheesy Ensaymada/Cheesy Ensaymada1.jpg' %}" alt="Product Image" style="padding-top:20px;" width="570px" height="570px" class="product-image">
-																	
-																   </a> </div> </div>
-																	<div class="card-body mt-5"> <br/> <br/>
-																		<h5 class="card-title">Cheesy Ensaymada</h5>
-																		<p class="card-text">Indulge in the rich, cheesy goodness of our traditional Cheesy Ensaymada at Mini Bakers, where each soft and buttery pastry is meticulously crafted to bring you a taste of Filipino comfort and culinary heritage in every delightful bite..</p>
-																			
-																		<center> <a href="25.html"  class="btn btn-rust" style="background-color:#983236; color:white;">View More</a> </center>
-																	</div>
-																</div>
-															</div>
-															
-															
-															<div class="carousel-item" style="padding-left:200px;">
-																<div class="card">
-																	<div class="img-wrapper"><div class="slider-item col items"><a href="31.html">
-																			<img src="products/11/11.jpg" alt="Product Image" style="padding-top:20px;" width="570px" height="570px" class="product-image">
-																		
-																	</a></div> </div>
-																	<div class="card-body mt-5"> <br/> <br/>  
-																	<h5 class="card-title">Chocolate Cupcakes</h5>
-																		<p class="card-text">Treat yourself to the divine pleasure of our Chocolate Cupcakes at Mini Bakers, where every bite unveils a perfect harmony of moist, decadent cake and velvety chocolate frosting, ensuring an indulgent experience that captures the essence of pure chocolate bliss.</p>
-																			
-																		<center> <a href="31.html"  class="btn btn-rust" style="background-color:#983236; color:white;">View More</a> </center>
-																	</div>
-																</div>
-															</div>
-															
-															
-												
-																				   
-														 
-														  
-														</div>
-														<button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
-															<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-															<span class="visually-hidden">Previous</span>
-														</button>
-														<button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
-															<span class="carousel-control-next-icon" aria-hidden="true"></span>
-															<span class="visually-hidden">Next</span>
-														</button>
+														{% endfor %}
 													</div>
+													<button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+														<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+														<span class="visually-hidden">Previous</span>
+													</button>
+													<button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+														<span class="carousel-control-next-icon" aria-hidden="true"></span>
+														<span class="visually-hidden">Next</span>
+													</button>
 												</div>
+											</div>
 					
 					
 					
@@ -196,54 +130,7 @@
 					</div> <br/><br/><br/>
 		</div>
 
-	<footer class="footer-04" style="font-family: Tw Cen MT; ">
-		<div style="background-color:#983236; height:50vh; overflow:hidden;" >
-			<div class="container">
-					<div class="row">
-						<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
-							<h2 class="footer-heading"><a href="#" class="logo" style="font-family: Pacifico;">Mini bakers</a></h2>
-							<img src="{% static 'images/logo.png' %}" width="60px"> <br/><br/>
-							<p>More than just a bakery; we aspire to be a cherished part of our community's fabric, intertwining tradition, innovation, and heartfelt connections.</p>
-						</div>
-						
-						<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
-							<h2 class="footer-heading">Categories</h2>
-								<ul class="list-unstyled">
-								  <li><a href="products.html#cakes" class="py-1 d-block">Cakes</a></li>
-								  <li><a href="products.html#bread" class="py-1 d-block">Bread</a></li>
-								  <li><a href="products.html#pastries" class="py-1 d-block">Pastries</a></li>
-								  <li><a href="products.html#filipinodelicacies" class="py-1 d-block">Filipino Delicacies</a></li>
-								</ul>
-						</div>
-						
-						<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
-							<h2 class="footer-heading">Tag cloud</h2>
-							<div class="tagcloud">
-							<a href="#" class="tag-cloud-link">cakes</a>
-							<a href="#" class="tag-cloud-link">chocolate</a>
-							<a href="#" class="tag-cloud-link">cupcake</a>
-							<a href="#" class="tag-cloud-link">filipino delicacies</a>
-							<a href="#" class="tag-cloud-link">custom</a>
-							<a href="#" class="tag-cloud-link">chiffon</a>
-							<a href="#" class="tag-cloud-link">crinkles</a>
-							<a href="#" class="tag-cloud-link">dessert</a>
-							</div>
-						</div>
-						
-						<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
-							<h2 class="footer-heading">Subscribe</h2>
-							<form action="#" class="subscribe-form">
-						    <div class="form-group d-flex">
-								<input type="text" class="form-control rounded-left" placeholder="Enter email address">
-								<button type="submit" class="form-control submit rounded-right"><span class="sr-only">Submit</span><i class="ion-ios-send"></i></button>
-							</div>
-							</form>
-						</div>
-					</div>
-			</div>
-			<div class="w-100 mt-5 border-top py-5"> </div>
-		</div>
-	</footer>
+	{% include "footer.html" %}
 </div>
 
 

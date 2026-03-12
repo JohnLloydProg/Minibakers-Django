@@ -27,10 +27,10 @@
             <div>
                 <h1 style="font-family: Pacifico;" id="cakes"> <b> {{product_type.category}} </b> </h1>
                 <hr/>
-                <div style="flex: content; flex-wrap: wrap;">
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
                     {% for product in product_type.items %}
                     <div class="product-item items" style="width: 12em;"> 
-                        <a href="7.html">
+                        <a href= "{% url 'product_detail' product_name=product.name %}">
                             <img src="{{product.thumbnail.url}}" alt="Product Image" class="product-image" data-toggle="modal" data-target="#modal4">
                             <div class="product-details text-center">
                                 <h5>{{product.name}}</h5>
