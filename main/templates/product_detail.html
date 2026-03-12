@@ -1,113 +1,276 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ product.name }}</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="{% static 'css/cssfile.css' %}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/IndivProdPage.css' %}">
-    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
-    <link href="https://fonts.cdnfonts.com/css/tw-cen-mt" rel="stylesheet">
-   
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      href="{% static 'css/cssfile.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/IndivProdPage.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.cdnfonts.com/css/tw-cen-mt" rel="stylesheet" />
 
-<div class="maincontent">
-  {% include "header.html" %}
+    <style>
+      /* Modal Overlay (Full Screen) */
+      .modal-overlay {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* Dark background */
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.3s ease;
+      }
 
-<br><br><br><br><br>
+      /* Modal Content */
+      .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 70%;
+        max-width: 600px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        position: relative;
+      }
 
-  <div class="container">
-    <!-- Main Section (Left) -->
-    <div class="main-section">
-      <!-- Main Image -->
-      <img class="main-image" src="{{product.thumbnail.url}}" alt="{{ product.name }}" onclick="openModal();">
-    
-    <!-- Thumbnail Images -->
-    <div class="thumbnail-container">
-      {% for product_image in product.productimage_set.all %}
-        <img class="thumbnail" src="{{ product_image.image.url }}" alt="Thumbnail" onclick="currentSlide();">
-      {% endfor %}
-    </div>
-  </div>
-  
-    <!-- Product Info Section (Right) -->
-    <div class="product-info">
-      <div style="font-family: 'Pacifico'; font-size: 38px;">{{ product.name }}</div><br>
+      /* Close Button */
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+        color: #983236; /* Red close button */
+        cursor: pointer;
+      }
+
+      /* Remarks and Photo Upload */
+      .remarks,
+      .photo-inspo {
+        margin: 10px 0;
+      }
+
+      .remarks textarea,
+      .photo-inspo input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        margin-top: 8px;
+      }
+
+      /* Quantity Control */
+      .quantity-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+
+      .quantity {
+        font-size: 24px;
+        margin: 0 10px;
+      }
+
+      .increment,
+      .decrement {
+        padding: 5px 10px;
+        background-color: #983236;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      /* Add to Cart Button */
+      .add-to-cart-button {
+        background-color: #983236;
+        color: #faf9e7;
+        padding: 12px 24px;
+        border-radius: 25px;
+        border: 2px solid #983236;
+        width: 100%;
+        transition: all 0.3s ease;
+      }
+
+      .add-to-cart-button:hover {
+        background-color: #faf9e7;
+        color: #983236; /* Red text */
+        border: 2px solid #983236;
+      }
+
+      /* Total Price Section */
+      .total-price {
+        text-align: center;
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="maincontent">
+      {% include "header.html" %}
+
+      <br /><br /><br /><br /><br />
+
+      <div class="container">
+        <!-- Main Section (Left) -->
+        <div class="main-section">
+          <!-- Main Image -->
+          <img
+            class="main-image"
+            src="{{product.thumbnail.url}}"
+            alt="{{ product.name }}"
+          />
+
+          <!-- Thumbnail Images -->
+          <div class="thumbnail-container">
+            {% for product_image in product.productimage_set.all %}
+            <img
+              class="thumbnail"
+              src="{{ product_image.image.url }}"
+              alt="Thumbnail"
+            />
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Product Info Section (Right) -->
+        <div class="product-info">
+          <div style="font-family: &quot;Pacifico&quot;; font-size: 38px">
+            {{ product.name }}
+          </div>
+          <br />
           <p>{{ product.description }}</p>
           <p><b>₱{{ product.price }}</b></p>
-      <a href="contact.html"> <button class="buy-now-button">Order Now</button> </a>
+          <button class="buy-now-button" onclick="openModal()">
+            Order Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal (Overlay) -->
+      <div class="modal-overlay" id="lightbox">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+
+          <!-- Modal Content (Form) -->
+          <h2>{{ product.name }}</h2>
+          <form id="order-form">
+            <div class="remarks">
+              <label for="remarks">Remarks:</label>
+              <textarea
+                id="remarks"
+                placeholder="Type your special requests here..."
+              ></textarea>
+            </div>
+            <div class="photo-inspo">
+              <label for="photo-inspo">Photo Inspo:</label>
+              <input type="file" id="photo-inspo" multiple />
+              <small>Upload up to 5 photos</small>
+            </div>
+            <div class="quantity-section">
+              <label for="quantity">Quantity:</label>
+              <button type="button" class="decrement">-</button>
+              <span id="quantity" class="quantity">1</span>
+              <button type="button" class="increment">+</button>
+            </div>
+            <div class="total-price">
+              <p>
+                <b>Total: ₱<span id="total-price">{{ product.price }}</span></b>
+              </p>
+            </div>
+            <button
+              type="button"
+              class="add-to-cart-button"
+              onclick="addToCart()"
+            >
+              Add to Cart
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {% include "footer.html" %}
     </div>
-  </div>
 
-  <!-- Modal Gallery -->
-  <div class="lightbox" id="lightbox" data-images="{% for product_image in product.productimage_set.all %}'{{ product_image.image.url }}'{% if not forloop.last %},{% endif %}{% endfor %}">
-    <span class="close" onclick="closeModal();">&times;</span>
-    <img class="modal-content" id="modal-img">
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-  </div>
+    <script>
+      let quantity = 1;
+      let price = {{ product.price }};
+      let totalPrice = price;
 
-{% include "footer.html" %}
+      // Update the total price based on the quantity
+      function updateTotalPrice() {
+        totalPrice = price * quantity;
+        document.getElementById('total-price').innerText = totalPrice.toFixed(2);
+      }
 
-</div>
+      // Open modal
+      function openModal() {
+        document.getElementById("lightbox").style.display = "flex";
+      }
 
-<script>
-    let slideIndex = 1;
-    let images = document.getElementById('lightbox').getAttribute('data-images').split(',');
+      // Close modal
+      function closeModal() {
+        document.getElementById("lightbox").style.display = "none";
+      }
 
-    function openModal() {
-        document.getElementById('lightbox').style.display = 'flex';
-        showSlides(slideIndex);
-        console.log("Image URL:", images[slideIndex - 1]);
-        console.log(images);  
-    }
+      // Handle quantity increase
+      document.querySelector('.increment').addEventListener('click', function() {
+        quantity++;
+        document.getElementById('quantity').innerText = quantity;
+        updateTotalPrice();
+      });
 
-    function closeModal() {
-        document.getElementById('lightbox').style.display = 'none';
-    }
+      // Handle quantity decrease
+      document.querySelector('.decrement').addEventListener('click', function() {
+        if (quantity > 1) {
+          quantity--;
+          document.getElementById('quantity').innerText = quantity;
+          updateTotalPrice();
+        }
+      });
 
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
+      // Add product to cart
+      function addToCart() {
+        let remarks = document.getElementById('remarks').value;
+        let photoInspo = document.getElementById('photo-inspo').files;
 
-    function currentSlide(n) {
-        slideIndex = n;
-        showSlides(slideIndex = n);
-    }
+        let cartItem = {
+          productId: {{ product.id }},
+          productName: "{{ product.name }}",
+          quantity: quantity,
+          remarks: remarks,
+          photoInspo: Array.from(photoInspo).map(file => file.name), // Store only file names
+          price: price,
+          totalPrice: totalPrice
+        };
 
-    function showSlides(n) {
-        let modalImg = document.getElementById('modal-img');
+        // Store cart items in session (localStorage as a cache example)
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(cartItem);
+        localStorage.setItem('cart', JSON.stringify(cart));
 
-        if (n > images.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = images.length }
-
-        modalImg.src = images[slideIndex - 1]; // Set the modal image to the current one
-        console.log("Current Image: " + modalImg.src); // For debugging
-
-        // Add event listener to close the modal when clicking outside the image
-        document.getElementById('lightbox').addEventListener('click', function(e) {
-            if (e.target.id === 'lightbox') {
-                closeModal();
-            }
-        });
-
-        // Add event listeners for arrow keys
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowLeft') {
-                plusSlides(-1);
-            } else if (e.key === 'ArrowRight') {
-                plusSlides(1);
-            }
-        });
-    }
-</script>
-
-</body>
+        closeModal();
+        alert('Item added to cart!');
+      }
+    </script>
+  </body>
 </html>
