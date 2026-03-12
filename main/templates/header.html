@@ -1,7 +1,7 @@
 {% load static %}
 <nav class="fixed-top navbar-expand-lg">
   <ul class="navbarlist">
-    <!-- Logout and View Cart buttons visible only when the user is logged in -->
+    <!-- Buttons for logged-in users -->
     {% if user.is_authenticated %}
     <li class="rightfloat">
       <a class="menus pd" href="{% url 'logout' %}">

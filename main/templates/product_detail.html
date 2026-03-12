@@ -211,82 +211,89 @@
 
       {% include "footer.html" %}
     </div>
-
-    <script>
-      const csrfToken = '{{ csrf_token }}';
-      let quantity = 1;
-      let price = {{ product.price }};
-      let totalPrice = price;
-
-      // Update the total price based on the quantity
-      function updateTotalPrice() {
-        totalPrice = price * quantity;
-        document.getElementById('total-price').innerText = totalPrice.toFixed(2);
-      }
-
-      // Open modal
-      function openModal() {
-        document.getElementById("lightbox").style.display = "flex";
-      }
-
-      // Close modal
-      function closeModal() {
-        document.getElementById("lightbox").style.display = "none";
-      }
-
-      // Handle quantity increase
-      document.querySelector('.increment').addEventListener('click', function() {
-        quantity++;
-        document.getElementById('quantity').innerText = quantity;
-        updateTotalPrice();
-      });
-
-      // Handle quantity decrease
-      document.querySelector('.decrement').addEventListener('click', function() {
-        if (quantity > 1) {
-          quantity--;
-          document.getElementById('quantity').innerText = quantity;
-          updateTotalPrice();
-        }
-      });
-
-      // Add product to cart (send to Django API)
-      async function addToCart() {
-        let remarks = document.getElementById('remarks').value;
-        let photoInspo = document.getElementById('photo-inspo').files;
-
-        let formData = new FormData();
-        formData.append('product_id', {{ product.id }});
-        formData.append('quantity', quantity);
-        formData.append('remarks', remarks);
-        formData.append('price', price);
-        formData.append('total_price', totalPrice);
-
-        // Append the inspo photo (if exists)
-        if (photoInspo.length > 0) {
-          formData.append('photo_inspo', photoInspo[0]);
-        }
-
-        try {
-          let response = await fetch("{% url 'add_to_cart' %}", {
-            method: 'POST',
-            headers: {
-              'X-CSRFToken': csrfToken  // Add CSRF token in headers
-            },
-            body: formData,
-          });
-
-          if (response.ok) {
-            alert('Item added to cart!');
-            closeModal();
-          } else {
-            alert('Failed to add item to cart.');
-          }
-        } catch (error) {
-          console.error('Error:', error);
-          alert('There was an error processing your request.');
-        }
-      }
-    </script>
   </body>
+  <script>
+  const csrfToken = '{{ csrf_token }}';
+  let quantity = 1;
+  let price = {{ product.price }};
+  let totalPrice = price;
+
+  // Update the total price based on the quantity
+  function updateTotalPrice() {
+    totalPrice = price * quantity;
+    document.getElementById('total-price').innerText = totalPrice.toFixed(2);
+  }
+
+  // Open modal
+  function openModal() {
+    document.getElementById("lightbox").style.display = "flex";
+  }
+
+  // Close modal
+  function closeModal() {
+    document.getElementById("lightbox").style.display = "none";
+  }
+
+  // Handle quantity increase
+  document.querySelector('.increment').addEventListener('click', function() {
+    quantity++;
+    document.getElementById('quantity').innerText = quantity;
+    updateTotalPrice();
+  });
+
+  // Handle quantity decrease
+  document.querySelector('.decrement').addEventListener('click', function() {
+    if (quantity > 1) {
+      quantity--;
+      document.getElementById('quantity').innerText = quantity;
+      updateTotalPrice();
+    }
+  });
+
+  // Add product to cart (send to Django API)
+  async function addToCart() {
+    let remarks = document.getElementById('remarks').value;
+    let photoInspo = document.getElementById('photo-inspo').files;
+
+    let formData = new FormData();
+    formData.append('product_id', {{ product.id }});  // Product ID
+    formData.append('quantity', quantity);  // Quantity
+    formData.append('remarks', remarks);  // Remarks
+    formData.append('price', price);  // Price
+    formData.append('total_price', totalPrice);  // Total Price
+
+    // Get the user id (logged-in user)
+    formData.append('user_id', '{{ user.id }}');
+
+    // Append the inspo photo (if exists)
+    if (photoInspo.length > 0) {
+      formData.append('photo_inspo', photoInspo[0]);
+    }
+
+    try {
+      let response = await fetch("{% url 'add_to_cart' %}", {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': csrfToken  // Add CSRF token in headers
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        let data = await response.json(); // Parse JSON response
+        if (data.message) {
+          alert('Item added to cart!');
+          closeModal();
+        } else {
+          alert('Failed to add item to cart.');
+        }
+      } else {
+        alert('Failed to add item to cart.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('There was an error processing your request.');
+    }
+  }
+</script>
 </html>
