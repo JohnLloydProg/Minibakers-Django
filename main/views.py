@@ -4,6 +4,7 @@ from products.models import Product, ProductType, Product, CartItem
 from transactions.models import Order, Receipt, OrderItem
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse
 from django.contrib.auth import logout
@@ -120,7 +121,9 @@ def signup(request):
 
 class CartView(View):
     def get(self, request):
-        # Retrieve the current user
+        if isinstance(request.user, AnonymousUser):
+            return redirect('login')
+        
         user = request.user
 
         # Fetch the user's cart items from the products_cartitem table
@@ -136,9 +139,11 @@ class CartView(View):
                 total_price += item_total_price  # Add to the overall total price
 
                 cart_items.append({
-                    'product': product,
+                    'product_name': product.name,
                     'quantity': item.quantity,
                     'total_price': item_total_price,
+                    'photo_inspo': item.inspo_pic,
+                    'note': item.note
                 })
             except Product.DoesNotExist:
                 continue  # Handle the case where the product doesn't exist (optional)
@@ -153,8 +158,10 @@ def user_logout(request):
 
 #CART FUNCTIONALITY
 
-@login_required
 def add_to_cart(request):
+    if isinstance(request.user, AnonymousUser):
+        return redirect('login')
+    
     if request.method == 'POST':
         product_id = request.POST.get('product_id')
         quantity = int(request.POST.get('quantity'))
@@ -186,8 +193,10 @@ def add_to_cart(request):
 
     return JsonResponse({'error': 'Invalid method'}, status=405)
 
-@login_required
 def create_order(request):
+    if isinstance(request.user, AnonymousUser):
+        return redirect('login')
+
     if request.method == 'POST':
         user = request.user
         total_price = float(request.POST.get('total_price'))  # Get total price from the frontend
@@ -238,5 +247,8 @@ def create_order(request):
 
 def orders_view(request):
     # Fetch the orders for the logged-in user
+    if isinstance(request.user, AnonymousUser):
+        return redirect('login')
+
     orders = Order.objects.filter(user=request.user)
     return render(request, 'orders.html', {'orders': orders})
