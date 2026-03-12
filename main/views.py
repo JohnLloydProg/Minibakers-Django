@@ -6,13 +6,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse
-from .forms import SignUpForm
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.utils import timezone
 from uuid import uuid4
 from django.http import JsonResponse
 from datetime import datetime
+from .forms import SignUpForm
+
 class indexView(View):
     def get(self, request):
         product_types = ProductType.objects.all()
@@ -234,3 +234,9 @@ def create_order(request):
         return JsonResponse({'success': True, 'order_id': order.id}, status=200)
 
     return JsonResponse({'error': 'Invalid method'}, status=405)
+
+
+def orders_view(request):
+    # Fetch the orders for the logged-in user
+    orders = Order.objects.filter(user=request.user)
+    return render(request, 'orders.html', {'orders': orders})

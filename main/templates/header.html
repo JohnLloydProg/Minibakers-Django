@@ -3,98 +3,66 @@
   <ul class="navbarlist">
     <!-- Buttons for logged-in users -->
     {% if user.is_authenticated %}
-      <li class="rightfloat">
-        <a class="menus pd" href="{% url 'logout' %}">
-          <button
-            class="btn btn-outline-primary"
-            style="
-              background-color: #983236;
-              color: #faf9e7;
-              border: 2px solid #983236;
-              padding: 10px 20px;
-              font-size: 16px;
-              border-radius: 25px;
-              transition: all 0.3s ease;
-              margin-left: -25px;
-              margin-top: -15px;
-            "
-            onmouseover="
-              this.style.backgroundColor = '#faf9e7';
-              this.style.color = '#983236';
-              this.style.border = '2px solid #983236';
-            "
-            onmouseout="
-              this.style.backgroundColor = '#983236';
-              this.style.color = '#faf9e7';
-              this.style.border = '2px solid #983236';
-            "
-          >
-            Logout
-          </button>
-        </a>
-      </li>
-      <li class="rightfloat">
-        <a class="menus pd" href="{% url 'cart' %}">
-          <button
-            class="btn btn-outline-primary"
-            style="
-              background-color: #983236;
-              color: #faf9e7;
-              border: 2px solid #983236;
-              padding: 10px 20px;
-              font-size: 16px;
-              border-radius: 25px;
-              transition: all 0.3s ease;
-              margin-left: -10px;
-              margin-top: -15px;
-            "
-            onmouseover="
-              this.style.backgroundColor = '#faf9e7';
-              this.style.color = '#983236';
-              this.style.border = '2px solid #983236';
-            "
-            onmouseout="
-              this.style.backgroundColor = '#983236';
-              this.style.color = '#faf9e7';
-              this.style.border = '2px solid #983236';
-            "
-          >
-            View Cart
-          </button>
-        </a>
-      </li>
-    {% else %}
-      <!-- Button for logged-out users -->
-      <li class="rightfloat">
-        <a class="menus pd" href="{% url 'login' %}">
-          <button
-            class="btn btn-outline-primary"
-            style="
-              background-color: #983236;
-              color: #faf9e7;
-              border: 2px solid #983236;
-              padding: 10px 20px;
-              font-size: 16px;
-              border-radius: 25px;
-              transition: all 0.3s ease;
-              margin-left: -25px;
-              margin-top: -15px;
-            "
-            onmouseover="
-              this.style.backgroundColor = '#faf9e7';
-              this.style.color = '#983236';
-              this.style.border = '2px solid #983236';
-            "
-            onmouseout="
-              this.style.backgroundColor = '#983236';
-              this.style.color = '#faf9e7';
-              this.style.border = '2px solid #983236';
-            "
-          >
-            Login
-          </button>
-        </a>
-      </li>
+    <li class="rightfloat">
+      <a class="menus pd" href="{% url 'logout' %}">
+        <button
+          class="btn btn-outline-primary"
+          style="
+            background-color: #983236;
+            color: #faf9e7;
+            border: 2px solid #983236;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            margin-left: -25px;
+            margin-top: -15px;
+          "
+          onmouseover="
+            this.style.backgroundColor = '#faf9e7';
+            this.style.color = '#983236';
+            this.style.border = '2px solid #983236';
+          "
+          onmouseout="
+            this.style.backgroundColor = '#983236';
+            this.style.color = '#faf9e7';
+            this.style.border = '2px solid #983236';
+          "
+        >
+          Logout
+        </button>
+      </a>
+    </li>
+    <li class="rightfloat">
+      <a class="menus pd" href="{% url 'cart' %}">
+        <button
+          class="btn btn-outline-primary"
+          style="
+            background-color: #983236;
+            color: #faf9e7;
+            border: 2px solid #983236;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            margin-left: -10px;
+            margin-top: -15px;
+          "
+          onmouseover="
+            this.style.backgroundColor = '#faf9e7';
+            this.style.color = '#983236';
+            this.style.border = '2px solid #983236';
+          "
+          onmouseout="
+            this.style.backgroundColor = '#983236';
+            this.style.color = '#faf9e7';
+            this.style.border = '2px solid #983236';
+          "
+        >
+          View Cart
+        </button>
+      </a>
+    </li>
     {% endif %}
 
     <li class="leftfloat logo">
@@ -116,10 +84,11 @@
     </li>
     <li class="rightfloat">
       <a
-        class="menus pd {% if request.path == '/contact/' %}active{% endif %}"
-        href="{% url 'contact' %}"
-        >Contact Us</a
+        class="menus pd {% if request.path == '/orders/' %}active{% endif %}"
+        href="{% url 'orders' %}"
       >
+        Orders
+      </a>
     </li>
     <li class="rightfloat">
       <a
