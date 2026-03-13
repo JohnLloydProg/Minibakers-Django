@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'products', 'transactions', 'main'
 ]
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://minibakers-django.onrender.com",
+]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
