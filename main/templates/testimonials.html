@@ -1,135 +1,184 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<title>Contact Us</title>
-		
+    <title>Contact Us</title>
 
-		<link link rel="stylesheet" href="{% static 'css/cssfile.css' %}" type="text/css">
-		<link rel="stylesheet" href="{% static 'css/style.css' %}">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-		
+    <link
+      link
+      rel="stylesheet"
+      href="{% static 'css/cssfile.css' %}"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-	 <style>
-      body {
-	  background-image: url("../static/images/bg.png");
-	  background-repeat: vertical;
-	  background-attachment: cover;
-	  background-position: fixed;
-	  }
+    <style>
+      .bg-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
     </style>
-		
-	</head>
+  </head>
 
-<body>
-<div class="maincontent"> 
-	{% include "header.html" %}
+  <body>
+    <img src="{% static 'images/bg.png' %}" alt="Background" class="bg-image" />
 
-<!--	Dito nyo lagay content	-->
-	<div class="container">
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<h1 align="center" class="scriptfont" style="color:#faf9e7;"> <b> Testimonials </b> </h1>
-		<br/><br/>
-		<div class="row">
-			<div class="product-item col items"> 
-				<img src="{% static 'images/testims/1.png' %}" alt="Testimonials Image" class="product-image">
-			</div>
-			
-			<div class="product-item col items"> 
-				<img src="{% static 'images/testims/2.png' %}" alt="Testimonials Image" class="product-image">
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="product-item col items"> 
-				<img src="{% static 'images/testims/3.png' %}" alt="Testimonials Image" class="product-image">
-			</div>
-			
-			<div class="product-item col items"> 
-				<img src="{% static 'images/testims/4.png' %}" alt="Testimonials Image" class="product-image">
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="product-item col items"> 
-				<img src="{% static 'images/testims/5.png' %}" alt="Testimonials Image" class="product-image">
-			</div>
-			
-			<div class="product-item col items"> 
-				<img src="{% static 'images/testims/6.png' %}" alt="Testimonials Image" class="product-image">
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="product-item col items"> 
-				<img src="{% static 'images/testims/7.png' %}" alt="Testimonials Image" class="product-image">
-			</div>
-			
-			<div class="product-item col items"> 
-				<img src="{% static 'images/testims/8.png' %}" alt="Testimonials Image" class="product-image">
-			</div>
-		</div>
-		
+    <div class="maincontent">
+      {% include "header.html" %}
+
+      <!--	Dito nyo lagay content	-->
+      <div class="container">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <h1 align="center" class="scriptfont" style="color: #faf9e7">
+          <b> Testimonials </b>
+        </h1>
+        <br /><br />
+        <div class="row">
+          <div class="product-item col items">
+            <img
+              src="{% static 'images/testims/1.png' %}"
+              alt="Testimonials Image"
+              class="product-image"
+            />
+          </div>
+
+          <div class="product-item col items">
+            <img
+              src="{% static 'images/testims/2.png' %}"
+              alt="Testimonials Image"
+              class="product-image"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="product-item col items">
+            <img
+              src="{% static 'images/testims/3.png' %}"
+              alt="Testimonials Image"
+              class="product-image"
+            />
+          </div>
+
+          <div class="product-item col items">
+            <img
+              src="{% static 'images/testims/4.png' %}"
+              alt="Testimonials Image"
+              class="product-image"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="product-item col items">
+            <img
+              src="{% static 'images/testims/5.png' %}"
+              alt="Testimonials Image"
+              class="product-image"
+            />
+          </div>
+
+          <div class="product-item col items">
+            <img
+              src="{% static 'images/testims/6.png' %}"
+              alt="Testimonials Image"
+              class="product-image"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="product-item col items">
+            <img
+              src="{% static 'images/testims/7.png' %}"
+              alt="Testimonials Image"
+              class="product-image"
+            />
+          </div>
+
+          <div class="product-item col items">
+            <img
+              src="{% static 'images/testims/8.png' %}"
+              alt="Testimonials Image"
+              class="product-image"
+            />
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <br />
+
+      {% include "footer.html" %}
     </div>
-	
-	<br/>
-	<br/>
-	
-	{% include "footer.html" %}
-</div>
 
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-<script>
-  $(document).ready(function () {
-    const multipleCardCarousel = document.querySelector("#carousel1");
-    if (window.matchMedia("(min-width: 768px)").matches) {
-      var carousel = new bootstrap.Carousel(multipleCardCarousel, {
-        interval: false,
-      });
-      var carouselWidth = $(".carousel-inner")[0].scrollWidth;
-      var cardWidth = $(".carousel-item").width();
-      var scrollPosition = 0;
-      $("#carousel1 .carousel-control-next").on("click", function () {
-        if (scrollPosition < carouselWidth - cardWidth * 4) {
-          scrollPosition += cardWidth;
-          $("#carousel1 .carousel-inner").animate(
-            { scrollLeft: scrollPosition },
-            600
-          );
+    <script>
+      $(document).ready(function () {
+        const multipleCardCarousel = document.querySelector("#carousel1");
+        if (window.matchMedia("(min-width: 768px)").matches) {
+          var carousel = new bootstrap.Carousel(multipleCardCarousel, {
+            interval: false,
+          });
+          var carouselWidth = $(".carousel-inner")[0].scrollWidth;
+          var cardWidth = $(".carousel-item").width();
+          var scrollPosition = 0;
+          $("#carousel1 .carousel-control-next").on("click", function () {
+            if (scrollPosition < carouselWidth - cardWidth * 4) {
+              scrollPosition += cardWidth;
+              $("#carousel1 .carousel-inner").animate(
+                { scrollLeft: scrollPosition },
+                600,
+              );
+            }
+          });
+          $("#carousel1 .carousel-control-prev").on("click", function () {
+            if (scrollPosition > 0) {
+              scrollPosition -= cardWidth;
+              $("#carousel1 .carousel-inner").animate(
+                { scrollLeft: scrollPosition },
+                600,
+              );
+            }
+          });
+        } else {
+          $(multipleCardCarousel).addClass("slide");
         }
       });
-      $("#carousel1 .carousel-control-prev").on("click", function () {
-        if (scrollPosition > 0) {
-          scrollPosition -= cardWidth;
-          $("#carousel1 .carousel-inner").animate(
-            { scrollLeft: scrollPosition },
-            600
-          );
-        }
-      });
-    } else {
-      $(multipleCardCarousel).addClass("slide");
-    }
-  });
-</script>
+    </script>
 
-<script>
-    function redirectToProducts() {
-      window.location.href = "{% url 'products' %}";
-    }
-	</script>
-
-</body>
+    <script>
+      function redirectToProducts() {
+        window.location.href = "{% url 'products' %}";
+      }
+    </script>
+  </body>
 </html>
