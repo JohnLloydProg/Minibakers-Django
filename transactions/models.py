@@ -40,3 +40,7 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(blank=False, null=False)
     inspo_pic = models.ImageField(upload_to=order_inspo_pic_name, blank=True, null=True)
     note = models.TextField()
+
+    @property
+    def total_price(self):
+        return self.product.price * self.quantity

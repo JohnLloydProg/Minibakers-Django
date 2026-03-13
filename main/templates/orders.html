@@ -222,7 +222,7 @@
             <div class="orders-section-title">Items</div>
 
             <div class="orders-items-list">
-              {% for item in order.items.all %}
+              {% for item in order.orderitem_set.all %}
               <div class="orders-item-row">
                 <div class="orders-item-left">
                   <div class="orders-item-name">{{ item.product.name }}</div>
