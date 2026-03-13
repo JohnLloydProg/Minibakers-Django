@@ -1,311 +1,311 @@
-{% load static %}
-<!DOCTYPE html>
-	<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<title>Home</title>
-		
-		
-		<link rel="stylesheet" href="{% static 'css/cssfile.css' %}" type="text/css">
-		<link rel="stylesheet" href="{% static 'css/style.css' %}">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-		
-		
-		<style> 
+	{% load static %}
+	<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			
-			.contactform {
-				width: 80%;
-				margin: 20px auto;
-				background-color: #faf9e7;
-				padding: 20px;
-				border-radius: 5px;
-				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-				border: 3px;
-				border-color: #983236;
-				border-style: solid;
-			}
+			<title>Home</title>
+			
+			
+			<link rel="stylesheet" href="{% static 'css/cssfile.css' %}" type="text/css">
+			<link rel="stylesheet" href="{% static 'css/style.css' %}">
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-			h1.contactus {
-				text-align: center;
-				color: #333;
-				font-family: pacifico;
-			}
-
-			.contact-form {
-				max-width: 500px;
-				margin: 0 auto;
-			}
-
-			.form-group {
-				margin-bottom: 20px;
-			}
-
-			.form-group label {
-				display: block;
-				font-weight: bold;
-				margin-bottom: 5px;
-			}
-
-			.form-group input,
-			.form-group textarea {
-				width: 100%;
-				padding: 10px;
-				font-size: 16px;
-				border: 1px solid #ccc;
-				border-radius: 5px;
-			}
-
-			.form-group textarea {
-				resize: none;
-				height: 150px;
-			}
-
-			button {
-				padding: 10px 20px;
-				background-color: #800000;
-				color: #fff;
-				border: none;
-				border-radius: 5px;
-				cursor: pointer;
-				font-size: 16px;
-			}
-
-			button:hover {
-				background-color: #a24857;
-			}
-		</style>
-	</head>
-
-<body style="background-color: #faf9e7;">
-<div class="maincontent"> 
-	{% include "header.html" %}
-
-<!--	Dito nyo lagay content	-->
-	
-	<div style="background-color:#faf9e7; height:100vh;">
-		<div class="container">
-
-			<div class="row" style="padding-top:150px; padding-bottom:100px;">
-				<div class="col">
-					<h1 style="margin:auto; padding-top:200px; font-family:Pacifico;"> Welcome to Mini Bakers!
-					</h1>
-					<p class="contentfont"> Welcome to Mini Bakers, a delightful haven born out of a mother's passion for baking. Our story is one of love, dedication, and the sweet aroma of success that wafts from our ovens to your homes.
-					</p>
-				</div>
+			<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+			
+			
+			<style> 
 				
-				<div class="col">
-					<img src="{% static 'images/bannerp.png' %}" width="100%">
-				</div>
-			</div>
-		</div>
+				.contactform {
+					width: 80%;
+					margin: 20px auto;
+					background-color: #faf9e7;
+					padding: 20px;
+					border-radius: 5px;
+					box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+					border: 3px;
+					border-color: #983236;
+					border-style: solid;
+				}
+
+				h1.contactus {
+					text-align: center;
+					color: #333;
+					font-family: pacifico;
+				}
+
+				.contact-form {
+					max-width: 500px;
+					margin: 0 auto;
+				}
+
+				.form-group {
+					margin-bottom: 20px;
+				}
+
+				.form-group label {
+					display: block;
+					font-weight: bold;
+					margin-bottom: 5px;
+				}
+
+				.form-group input,
+				.form-group textarea {
+					width: 100%;
+					padding: 10px;
+					font-size: 16px;
+					border: 1px solid #ccc;
+					border-radius: 5px;
+				}
+
+				.form-group textarea {
+					resize: none;
+					height: 150px;
+				}
+
+				button {
+					padding: 10px 20px;
+					background-color: #800000;
+					color: #fff;
+					border: none;
+					border-radius: 5px;
+					cursor: pointer;
+					font-size: 16px;
+				}
+
+				button:hover {
+					background-color: #a24857;
+				}
+			</style>
+		</head>
+
+	<body style="background-color: #faf9e7;">
+	<div class="maincontent"> 
+		{% include "header.html" %}
+
+	<!--	Dito nyo lagay content	-->
 		
-		<div style="  background-color:#983236; ">		
-		<div class="container">
-			<div class="row" style="padding-top:100px; ;">
-				<div class="col text-center" style="color:#faf9e7;"> <br/> <br/> <br/>
-					<h1 class="scriptfont"> From hobby to business</h1> <br/><br/> 
-					<p class="contentfont" style="font-size:20px;"> What started as a simple hobby, baking treats for family and friends, soon blossomed into a full-fledged business. Every recipe, every creation is infused with the warmth and care that only a mother can provide.
-					</p>
-						<div class="button-effect"> <br/>
-						<a class="effect effect-5" href="{% url 'about' %}" title="Know more">Know more</a>
-						</div>
-				</div>
-				
-				<div class="col" style="padding-bottom:100px;">
-				<img src="{% static 'images/gek.png' %}" width="600px" height="600px" style="border: 10px; border-style:solid; border-color:#faf9e7;"> 
-				</div>
-			</div>
-		</div>
-		</div>
-		
-		<div style="height:100vh;  background-image: url('{% static 'images/bgfixed.png' %}'); background-size:cover; background-attachment:fixed; background-repeat: no-repeat;">
-		</div>
-		
-		<div style="height: auto; background-image: url('{% static 'images/bg.png' %}'); padding-bottom:150px; ">
-			<div class="container" style="padding-top:100px;">
-				<div class="text-center" style="padding:60px;">
-				<h1 class="scriptfont" style="color:#faf9e7;">Choose from different baked goodies!</h1>
-				</div>
-				
-					<div class="row">
-						{% for product_type in categories %}
-						<div class="col">
-							<div class="img-box">
-								<a href="{% url 'products' %}#{{ product_type.name }}"> <img src="{{ product_type.thumbnail.url }}" alt="cakes"> </a>
-							</div>
-						</div>
-						{% endfor %}
+		<div style="background-color:#faf9e7; height:100vh;">
+			<div class="container">
+
+				<div class="row" style="padding-top:150px; padding-bottom:100px;">
+					<div class="col">
+						<h1 style="margin:auto; padding-top:200px; font-family:Pacifico;"> Welcome to Mini Bakers!
+						</h1>
+						<p class="contentfont"> Welcome to Mini Bakers, a delightful haven born out of a mother's passion for baking. Our story is one of love, dedication, and the sweet aroma of success that wafts from our ovens to your homes.
+						</p>
 					</div>
-				
+					
+					<div class="col">
+						<img src="{% static 'images/bannerp.png' %}" width="100%">
+					</div>
+				</div>
+			</div>
+			
+			<div style="  background-color:#983236; ">		
+			<div class="container">
+				<div class="row" style="padding-top:100px; ;">
+					<div class="col text-center" style="color:#faf9e7;"> <br/> <br/> <br/>
+						<h1 class="scriptfont"> From hobby to business</h1> <br/><br/> 
+						<p class="contentfont" style="font-size:20px;"> What started as a simple hobby, baking treats for family and friends, soon blossomed into a full-fledged business. Every recipe, every creation is infused with the warmth and care that only a mother can provide.
+						</p>
+							<div class="button-effect"> <br/>
+							<a class="effect effect-5" href="{% url 'about' %}" title="Know more">Know more</a>
+							</div>
+					</div>
+					
+					<div class="col" style="padding-bottom:100px;">
+					<img src="{% static 'images/gek.png' %}" width="600px" height="600px" style="border: 10px; border-style:solid; border-color:#faf9e7;"> 
+					</div>
+				</div>
+			</div>
+			</div>
+			
+			<div style="height:100vh;  background-image: url('{% static 'images/bgfixed.png' %}'); background-size:cover; background-attachment:fixed; background-repeat: no-repeat;">
+			</div>
+			
+			<div style="height: auto; background-image: url('{% static 'images/bg.png' %}'); padding-bottom:150px; ">
+				<div class="container" style="padding-top:100px;">
+					<div class="text-center" style="padding:60px;">
+					<h1 class="scriptfont" style="color:#faf9e7;">Choose from different baked goodies!</h1>
+					</div>
+					
+						<div class="row">
+							{% for product_type in categories %}
+							<div class="col">
+								<div class="img-box">
+									<a href="{% url 'products' %}#{{ product_type.name }}"> <img src="{{ product_type.thumbnail.url }}" alt="cakes"> </a>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					
+				</div>
+
 			</div>
 
-		</div>
 
-
-		<div style=" background-color:#faf9e7;">
-					<div class="container" style="padding-top:50px;">
-					<h1 class="scriptfont text-center" style="color:black;">Featured Products</h1>
-					
-												<hr/>
-												<br/>
-												<br/>
-												<br/>
-												<div class="row" style="padding-left:100px;">
-												<div id="carousel1" class="carousel">
-													<div class="carousel-inner">
-														{% for product in products %}
-															<div class="carousel-item {% if forloop.first %}active{% endif %}" style="padding-left:200px;">
-																<div class="card">
-																	<div class="img-wrapper">
-																		<div class="slider-item items col">
-																			<a href="{% url 'product_detail' product_name=product.name %}">
-																				<img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" style="padding-top:20px;" width="570px" height="570px" class="product-image">
-																			</a>
+			<div style=" background-color:#faf9e7;">
+						<div class="container" style="padding-top:50px;">
+						<h1 class="scriptfont text-center" style="color:black;">Featured Products</h1>
+						
+													<hr/>
+													<br/>
+													<br/>
+													<br/>
+													<div class="row" style="padding-left:100px;">
+													<div id="carousel1" class="carousel">
+														<div class="carousel-inner">
+															{% for product in products %}
+																<div class="carousel-item {% if forloop.first %}active{% endif %}" style="padding-left:200px;">
+																	<div class="card">
+																		<div class="img-wrapper">
+																			<div class="slider-item items col">
+																				<a href="{% url 'product_detail' product_name=product.name %}">
+																					<img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" style="padding-top:20px;" width="570px" height="570px" class="product-image">
+																				</a>
+																			</div>
+																		</div>
+																		<div class="card-body mt-5">
+																			<h5 class="card-title">{{ product.name }}</h5>
+																			<p class="card-text">{{ product.description }}</p>
+																			<center><a href="{% url 'product_detail' product_name=product.name %}" class="btn btn-rust" style="background-color:#983236; color:white;">View More</a></center>
 																		</div>
 																	</div>
-																	<div class="card-body mt-5">
-																		<h5 class="card-title">{{ product.name }}</h5>
-																		<p class="card-text">{{ product.description }}</p>
-																		<center><a href="{% url 'product_detail' product_name=product.name %}" class="btn btn-rust" style="background-color:#983236; color:white;">View More</a></center>
-																	</div>
 																</div>
-															</div>
-														{% endfor %}
+															{% endfor %}
+														</div>
+														<button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+															<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+															<span class="visually-hidden">Previous</span>
+														</button>
+														<button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+															<span class="carousel-control-next-icon" aria-hidden="true"></span>
+															<span class="visually-hidden">Next</span>
+														</button>
 													</div>
-													<button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
-														<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-														<span class="visually-hidden">Previous</span>
-													</button>
-													<button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
-														<span class="carousel-control-next-icon" aria-hidden="true"></span>
-														<span class="visually-hidden">Next</span>
-													</button>
 												</div>
-											</div>
-					
-					
-					
-		
-					</div> <br/><br/><br/>
+						
+						
+						
+			
+						</div> <br/><br/><br/>
+			</div>
+
+			<div style=" " class="container">
+			<br />
+			<br />
+			<br />
+			<br />
+
+			<br />
+			<div class="contactform">
+			<h1 class="contactus">Have any suggestions?</h1>
+			<div> 
+			<form id="contact-form" >
+				{% csrf_token %}
+				<div class="form-group">
+					<label for="name">Your Name</label>
+					<input type="text" id="name" name="name" required />
+				</div>
+				<div class="form-group">
+					<label for="email">Your Email</label>
+					<input type="email" id="email" name="email" required />
+				</div>
+				<div class="form-group">
+					<label for="message">Message</label>
+					<textarea id="message" name="message" required></textarea>
+				</div>
+				<div class="form-group">
+					<button type="submit">Send Message</button>
+				</div>
+				</form>
+			</div>
+			</div>
 		</div>
 
-		<div style=" " class="container">
-        <br />
-        <br />
-        <br />
-        <br />
+		<br />
+		<br />
 
-        <br />
-        <div class="contactform">
-          <h1 class="contactus">Have any suggestions?</h1>
-          <div> 
-		  <form id="contact-form" >
-              {% csrf_token %}
-              <div class="form-group">
-                <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" required />
-              </div>
-              <div class="form-group">
-                <label for="email">Your Email</label>
-                <input type="email" id="email" name="email" required />
-              </div>
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required></textarea>
-              </div>
-              <div class="form-group">
-                <button type="submit">Send Message</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <br />
-      <br />
-
-	{% include "footer.html" %}
-</div>
+		{% include "footer.html" %}
+	</div>
 
 
 
-<script>
-  $(document).ready(function () {
-    const multipleCardCarousel = document.querySelector("#carousel1");
-    if (window.matchMedia("(min-width: 768px)").matches) {
-      var carousel = new bootstrap.Carousel(multipleCardCarousel, {
-        interval: false,
-      });
-      var carouselWidth = $(".carousel-inner")[0].scrollWidth;
-      var cardWidth = $(".carousel-item").width();
-      var scrollPosition = 0;
-      $("#carousel1 .carousel-control-next").on("click", function () {
-        if (scrollPosition < carouselWidth - cardWidth * 4) {
-          scrollPosition += cardWidth;
-          $("#carousel1 .carousel-inner").animate(
-            { scrollLeft: scrollPosition },
-            600
-          );
-        }
-      });
-      $("#carousel1 .carousel-control-prev").on("click", function () {
-        if (scrollPosition > 0) {
-          scrollPosition -= cardWidth;
-          $("#carousel1 .carousel-inner").animate(
-            { scrollLeft: scrollPosition },
-            600
-          );
-        }
-      });
-    } else {
-      $(multipleCardCarousel).addClass("slide");
-    }
-  });
-</script>
+	<script>
+	$(document).ready(function () {
+		const multipleCardCarousel = document.querySelector("#carousel1");
+		if (window.matchMedia("(min-width: 768px)").matches) {
+		var carousel = new bootstrap.Carousel(multipleCardCarousel, {
+			interval: false,
+		});
+		var carouselWidth = $(".carousel-inner")[0].scrollWidth;
+		var cardWidth = $(".carousel-item").width();
+		var scrollPosition = 0;
+		$("#carousel1 .carousel-control-next").on("click", function () {
+			if (scrollPosition < carouselWidth - cardWidth * 4) {
+			scrollPosition += cardWidth;
+			$("#carousel1 .carousel-inner").animate(
+				{ scrollLeft: scrollPosition },
+				600
+			);
+			}
+		});
+		$("#carousel1 .carousel-control-prev").on("click", function () {
+			if (scrollPosition > 0) {
+			scrollPosition -= cardWidth;
+			$("#carousel1 .carousel-inner").animate(
+				{ scrollLeft: scrollPosition },
+				600
+			);
+			}
+		});
+		} else {
+		$(multipleCardCarousel).addClass("slide");
+		}
+	});
+	</script>
 
-<script>
-    function redirectToProducts() {
-      window.location.href = "{% url 'products' %}";
-    }
-
-
-</script>
+	<script>
+		function redirectToProducts() {
+		window.location.href = "{% url 'products' %}";
+		}
 
 
-<script>
-    // 1. ADD THIS LINE HERE:
-    emailjs.init("lIwvEYiqflm2y1s_g"); 
-
-    const contactForm = document.getElementById('contact-form');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault(); 
-            console.log("Form submission intercepted!");
-
-            emailjs.send("service_jdkuccy", "template_mz48ikg", {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                message: document.getElementById('message').value,
-            })
-            .then(function(response) {
-                alert('Your suggestion has been sent successfully!');
-                contactForm.reset();
-            }, function(error) {
-                console.log('EmailJS Error:', error);
-                // Updated this alert to show the ACTUAL error text
-                alert('Error: ' + JSON.stringify(error));
-            });
-        });
-    } else {
-        console.log("Error: Could not find the form with ID 'contact-form'");
-    }
-</script>
+	</script>
 
 
-</body>
-</html>
+	<script>
+		// 1. ADD THIS LINE HERE:
+		emailjs.init("lIwvEYiqflm2y1s_g"); 
+
+		const contactForm = document.getElementById('contact-form');
+
+		if (contactForm) {
+			contactForm.addEventListener('submit', function (e) {
+				e.preventDefault(); 
+				console.log("Form submission intercepted!");
+
+				emailjs.send("service_jdkuccy", "template_mz48ikg", {
+					name: document.getElementById('name').value,
+					email: document.getElementById('email').value,
+					message: document.getElementById('message').value,
+				})
+				.then(function(response) {
+					alert('Your suggestion has been sent successfully!');
+					contactForm.reset();
+				}, function(error) {
+					console.log('EmailJS Error:', error);
+					// Updated this alert to show the ACTUAL error text
+					alert('Error: ' + JSON.stringify(error));
+				});
+			});
+		} else {
+			console.log("Error: Could not find the form with ID 'contact-form'");
+		}
+	</script>
+
+
+	</body>
+	</html>
